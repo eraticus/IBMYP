@@ -1,0 +1,26 @@
+<h1>Listing formative_tasks</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th>Level</th>
+    <th>Unit planner</th>
+    <th>Task</th>
+  </tr>
+
+<% @formative_tasks.each do |formative_task| %>
+  <tr>
+    <td><%=h formative_task.description %></td>
+    <td><%=h formative_task.level %></td>
+    <td><%=h formative_task.unit_planner_id %></td>
+    <td><%=h formative_task.task %></td>
+    <td><%= link_to 'Show', formative_task %></td>
+    <td><%= link_to 'Edit', edit_formative_task_path(formative_task) %></td>
+    <td><%= link_to 'Destroy', formative_task, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New formative_task', new_formative_task_path %>

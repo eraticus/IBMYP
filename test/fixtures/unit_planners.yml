@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  subject_area: MyString
+  course: MyString
+  level: MyString
+  unit_topic: MyString
+  unit_title: MyString
+  teachers: MyString
+  time_frame: MyString
+  year: MyString
+
+two:
+  subject_area: MyString
+  course: MyString
+  level: MyString
+  unit_topic: MyString
+  unit_title: MyString
+  teachers: MyString
+  time_frame: MyString
+  year: MyString

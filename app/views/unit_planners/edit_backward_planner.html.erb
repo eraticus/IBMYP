@@ -1,0 +1,99 @@
+
+
+<div class="section">
+	
+	<% form_for(@unit_planner, :url => update_backward_planner_unit_planner_path(@unit_planner), :html=>{:method=>:put}) do |form| %>
+	  <%=form.error_messages%>
+	
+	<h2>Stage 2: Backward Planning</h2>
+	<div class="section">
+		<div class="title">Learning Readiness</div>
+
+		<div>
+			<%=form.text_field :learning_readiness, :class=>"text_field" %>
+		</div>
+
+	</div>
+
+	<div class="section">
+		<div class="title">Unit Content</div>
+
+		<b>Concepts:</b>
+		<div>
+			<%=form.text_field :unit_content_concepts, :class=>"text_field" %>
+		</div>
+
+		<b>Skills:</b>
+		<div>
+			<%=form.text_field :unit_content_skills, :class=>"text_field" %>
+		</div>
+
+	</div>
+
+	<div class="section">
+		<div class="title">Standards</div>
+		<div>
+			<%=form.text_field :standards, :class=>"text_field" %>
+		</div>
+
+	</div>
+	<div class="section">
+		<div class="title">Intercultural Awareness -- International Mindedness</div>
+		<div>
+			<%=form.text_field :intercultural_awareness, :class=>"text_field" %>
+		</div>
+
+
+	</div>
+	<div class="section">
+		<div class="title">Learning Support</div>
+
+		<b>Learner Profile:</b>
+		<div>
+			<%=form.text_field :learner_profile, :class=>"text_field" %>
+		</div>
+
+		<b>Learning Support:</b>
+		<div>
+			<%=form.text_field :learning_support, :class=>"text_field" %>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="title">Teaching Strategies to Support Learning</div>
+
+		<div>
+			<%=form.text_field :teaching_strategies, :class=>"text_field" %>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="title">Approaches to Learning Skills</div>
+
+		<b>Skill Category:</b>
+		<div>
+			<%=form.text_field :approaches_skill, :class=>"text_field" %>
+		</div>
+		<b>Strategies:</b>
+		<div>
+			<%=form.text_field :approaches_strategy, :class=>"text_field" %>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="title">Learning Activities</div>
+
+		<div>
+			<%=form.text_field :learning_activities, :class=>"text_field" %>
+		</div>
+	</div>
+	
+	<div>
+  <%= form.submit 'Update Backward Planner'%>
+  </div>
+  
+	
+	<%end%>
+
+</div>
+

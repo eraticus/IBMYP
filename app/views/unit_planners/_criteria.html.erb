@@ -1,0 +1,7 @@
+  <b>MYP Objectives:</b>
+  
+  <%#for objective in @unit_planner.objectives.all(:include=>:criterion, :order=>'criterions.category, objectives.subcategory') %>
+  <%for objective in @unit_planner.objectives.all(:include=>:criterion, :order=>'criterions.category, objectives.subcategory') %>
+
+  <div style="margin:5px">
+  <%= "<b>#{objective.criterion.category}#{objective.subcategory}:</b> #{objective.description}" %>

@@ -1,0 +1,17 @@
+<h1>Editing</h1>
+
+<% form_for(@unit_planner) do |f| %>
+  <%= f.error_messages %>
+
+<%= render :partial => f %>
+
+  <p>
+  <%= f.submit 'Update'%>
+  </p>
+  
+
+        
+<% end %>
+
+<%= link_to 'Show', @unit_planner %> |
+<%= link_to 'Back', unit_planners_path %>

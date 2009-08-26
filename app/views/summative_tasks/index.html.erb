@@ -1,0 +1,27 @@
+<h1>Listing summative_tasks</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th>Level</th>
+    <th>Type</th>
+  </tr>
+
+<% @summative_tasks.each do |summative_task| %>
+  <tr>
+    <td><%=h summative_task.description %></td>
+    <td><%=h summative_task.level %></td>
+    <td><%=h summative_task.type %></td>
+    <td><%= link_to 'Show', summative_task %></td>
+    <td><%= link_to 'Edit', edit_summative_task_path(summative_task) %></td>
+    <td><%= link_to 'Destroy', summative_task, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%#=render :partial=>'summative_task', :collection=>@summative_tasks %>
+
+
+<br />
+
+<%= link_to 'New summative_task', new_summative_task_path %>

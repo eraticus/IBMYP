@@ -1,0 +1,66 @@
+Here is the future site of the <b>Tasks</b> edit page
+
+<% blooms_choices = [["1 Remembering", 1],["2 Understanding", 2],["3 Applying", 3],["4 Analyzing", 4],["5 Evaluating", 5],["6 Creating", 6]] %>
+
+<%form_for @unit_planner, :url=>update_tasks_unit_planner_path(@unit_planner) do |form|%>
+
+<div style="margin:10px">
+<table>
+<tr class="tint"><td colspan="4"><label>Summative Assessment Task(s)</label></td><td><label>MYP Criteria</label></td><td><label>Blooms Level</label></td><td><label>Type of Task</label></td></tr>
+<tr><td colspan="4">Space intentionally left blank</td>
+
+<td>
+
+<%for oc in @unit_planner.objectives.collect(&:criterion).uniq%>
+<%=check_box_tag 'unit_planner[assessment_criterion_ids][]', oc.id, @unit_planner.assessment_criterions.include?(oc)%><%="<span style=\"font-weight:bold\">#{oc.category}:</span> #{oc.title}"%>
+<br />
+
+
+<%end%>
+
+</td>
+
+<td>
+
+<%=select_tag 'unit_planner[summative_blooms_level]', options_for_select(blooms_choices, @unit_planner.summative_blooms_level)%>
+
+</td>
+
+<td>X</td></tr>
+<tr class="tint"><td colspan="7"><label>How will students know what is expected of them on the summative task(s)?</label> (Rubrics, checklists, template, exemplars, etc.)</td></tr>
+<tr><td colspan="7">X</td></tr>
+</table>
+</div>
+
+<div style="margin:10px">
+<table>
+<tr class="tint"><td colspan="4"><label>Formative Task(s)</label></td><td><label>MYP Objectives</label></td><td><label>Blooms Level</label></td><td><label>Type of Task</label></td></tr>
+<tr><td colspan="4">Space 2 intentionally left blank</td>
+
+<td>
+
+<% for obj in @unit_planner.objectives %>
+<%= check_box_tag 'unit_planner[formative_objective_ids][]', obj.id, @unit_planner.formative_objectives.include?(obj) %><%="<span style=\"font-weight:bold\">#{obj.criterion.category}#{obj.subcategory}:</span> #{obj.description}"%>
+<br />
+
+
+<%end%>
+
+</td>
+
+<td>
+
+<%=select_tag 'unit_planner[formative_blooms_level]', options_for_select(blooms_choices, @unit_planner.formative_blooms_level)%>
+
+</td>
+
+<td>X</td></tr>
+</table>
+</div>
+
+<p>
+<%= submit_tag 'Update Tasks'%>
+</p>
+
+
+<%end%>

@@ -1,0 +1,18 @@
+<p>
+  <b>Description:</b>
+  <%=h @formative_task.description %>
+</p>
+
+<p>
+  <b>Level:</b>
+  <%=h @formative_task.level %>
+</p>
+
+<p>
+  <b>Task:</b>
+  <%=h @formative_task.task %>
+</p>
+
+
+<% #= link_to 'Edit', edit_formative_task_path(@formative_task) %> |
+<% #= link_to 'Back', formative_tasks_path %>

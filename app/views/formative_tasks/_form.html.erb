@@ -1,0 +1,33 @@
+
+
+<div style="margin:10px">
+
+<div>
+	<b>Formative Task</b>
+  <%= form.text_field :description %>
+<div>
+
+<div>
+	<b>MYP Objectives</b>
+	<br/>
+<%for o in @unit_planner.objectives.all(:include=>:criterion, :order=>'criterions.category, objectives.subcategory')%>
+<%=check_box_tag 'formative_task[objective_ids][]', o.id, @formative_task.objectives.include?(o)%><%="<span style=\"font-weight:bold\">#{o.criterion.category}#{o.subcategory}:</span> #{o.description}"%>
+<br />
+<%end%>
+</div>
+
+<div>
+	<b>Blooms Level</b>
+
+<%=select_tag 'formative_task[level]', options_for_select(blooms_choices, @formative_task.level)%>
+
+</div>
+
+<div>
+	<b>Type of Task</b>
+
+  <%= form.text_field :task %>
+  
+</div>
+
+</div>

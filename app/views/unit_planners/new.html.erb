@@ -1,0 +1,17 @@
+<h1>Creating a New Unit Planner</h1>
+
+<% form_for(@unit_planner) do |f| %>
+  <%= f.error_messages %>
+
+<%= render :partial => f %>
+
+  <p>
+  <%= f.submit 'Create' %>
+  </p>
+  
+
+        
+<% end %>
+
+
+<%= link_to 'Back', unit_planners_path %>

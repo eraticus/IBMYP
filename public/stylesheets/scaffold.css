@@ -1,0 +1,138 @@
+body { background-color: #fff; color: #333; }
+
+body {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size:   15px;
+	line-height: 18px;
+	background-color:#000080;
+
+	color:#333333;
+
+	margin:0;
+	padding:0;
+}
+
+.section {
+	margin:5px;
+	padding:5px;
+	border:1px solid #AAAAAA
+
+}
+
+.section .title {
+	font-weight:bold;
+	background-color:yellow;
+	border-bottom:1px solid #555;
+}
+
+.section .navigation {
+	text-align:right
+}
+
+.section .text_field {
+	width:90%;
+	margin: 5px 5px;
+}
+
+.clear {
+	clear:both;
+}
+
+.center {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	background-color:white;
+	-moz-border-radius: 1em; /* works only in firefox */
+	width: 1000px; /* should be set to "official" width of application */
+}
+
+table {
+	width:90%;
+	border:1px solid #000000;
+	border-collapse:collapse
+}
+
+table td {
+	border:1px solid #000000;
+	border-collapse:collapse
+}
+
+.block {
+	margin-bottom:20px;
+	border:1px solid #000000;
+}
+
+
+.tint {
+	background-color:yellow;
+}
+
+
+label {
+	font-weight: bold;
+	color: #403F41;
+}
+
+
+select, input {
+	font-size: 15px;
+}
+
+
+#user_nav {
+	float: right;
+	font-size: 1em;
+}
+
+
+pre {
+	background-color: #eee;
+	padding: 10px;
+	font-size: 11px;
+}
+
+a { color: #000; }
+a:visited { color: #666; }
+a:hover { color: #fff; background-color:#000080; }
+
+.fieldWithErrors {
+	padding: 2px;
+	background-color: red;
+	display: table;
+}
+
+#errorExplanation {
+	width: 400px;
+	border: 2px solid red;
+	padding: 7px;
+	padding-bottom: 12px;
+	margin-bottom: 20px;
+	background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+	text-align: left;
+	font-weight: bold;
+	padding: 5px 5px 5px 15px;
+	font-size: 12px;
+	margin: -7px;
+	background-color: #c00;
+	color: #fff;
+}
+
+#errorExplanation p {
+	color: #333;
+	margin-bottom: 0;
+	padding: 5px;
+}
+
+#errorExplanation ul li {
+	font-size: 12px;
+	list-style: square;
+}
+

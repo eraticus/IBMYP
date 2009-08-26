@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  description: MyString
+  level: 
+  unit_planner_id: 1
+  task: MyString
+
+two:
+  description: MyString
+  level: 
+  unit_planner_id: 1
+  task: MyString

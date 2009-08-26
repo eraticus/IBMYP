@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  standard_group_id: 1
+  tag: MyString
+  description: MyString
+  middle: false
+  high: false
+
+two:
+  standard_group_id: 1
+  tag: MyString
+  description: MyString
+  middle: false
+  high: false

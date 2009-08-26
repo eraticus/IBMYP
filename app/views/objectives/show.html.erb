@@ -1,0 +1,18 @@
+<p>
+  <b>Subject area:</b>
+  <%=h @objective.subject_area %>
+</p>
+
+<p>
+  <b>Tag:</b>
+  <%=h @objective.tag %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @objective.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_objective_path(@objective) %> |
+<%= link_to 'Back', objectives_path %>

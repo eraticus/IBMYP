@@ -1,0 +1,32 @@
+<h1>Listing unit_planners</h1>
+
+<table>
+  <tr>
+    <th>Subject area</th>
+    <th>Course</th>
+    <th>Level</th>
+    <th>Unit topic</th>
+    <th>Unit title</th>
+    <th>Teachers</th>
+    <th>Time frame</th>
+    <th>Year</th>
+  </tr>
+
+<% @unit_planners.each do |unit_planner| %>
+  <tr>
+    <td><%=h unit_planner.subject_area %></td>
+    <td><%=h unit_planner.course %></td>
+    <td><%=h unit_planner.blooms_level %></td>
+    <td><%=h unit_planner.unit_topic %></td>
+    <td><%=h unit_planner.unit_title %></td>
+    <td><%=h unit_planner.teachers %></td>
+    <td><%= link_to 'Show', unit_planner %></td>
+    <td><%= link_to 'Edit', edit_unit_planner_path(unit_planner) %></td>
+    <td><%= link_to 'Destroy', unit_planner, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New unit_planner', new_unit_planner_path %>

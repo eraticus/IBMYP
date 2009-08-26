@@ -1,0 +1,32 @@
+<div style="margin:10px">
+<table>
+<tr class="tint"><td colspan="4"><label>Summative Assessment Task(s)</label></td><td><label>MYP Criteria</label></td><td><label>Blooms Level</label></td><td><label>Type of Task</label></td></tr>
+<tr><td colspan="4">
+
+  <%= summative_task.description %>
+
+</td>
+
+<td>
+
+<%for oc in summative_task.criterions%>
+<%="#{oc.category}: #{oc.title}"%>
+<br />
+<%end%>
+
+</td>
+
+<td>
+
+<%=summative_task.level%>
+
+</td>
+
+<td>
+
+  <%=summative_task.task %>
+  
+</td></tr>
+
+</table>
+</div>

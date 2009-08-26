@@ -1,0 +1,32 @@
+<H1>
+<%=@unit_planner.subject.titleize%> Objectives
+</H1>
+
+
+<% form_for(@unit_planner, :url => update_objectives_unit_planner_path(@unit_planner), :html=>{:method=>:put}) do |f| %>
+<%=f.error_messages %>
+
+<%old_category=nil%>
+<%for criterion in @unit_planner.subject.criterions.all(:include=>:objectives)%>
+<h3><%=criterion.category%>. <%=criterion.title%></h3>
+<%for objective in criterion.objectives%>
+<div>
+	<%=check_box_tag "unit_planner[objective_ids][]", objective.id,
+	@unit_planner.objectives.include?(objective)%>
+	<b><%=objective.subcategory%>:</b>
+	<%=objective.description%>
+</div>
+<%end%>
+<%end%>
+
+<p>
+	<%= f.submit 'Update'%>
+</p>
+
+
+<%end%>
+
+<%= link_to 'Show', @unit_planner %> |
+<%= link_to 'Back', unit_planners_path %>
+
+<%#=debug @unit_planner%>

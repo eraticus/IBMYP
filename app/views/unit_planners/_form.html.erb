@@ -1,0 +1,78 @@
+
+<%
+#subject_areas=["Arts", "Humanities", "Language A", "Language B", "Mathematics", "Physical Education", "Sciences", "Technology"]
+%>
+
+
+<table>
+	<tr><td><label>Subject Area / Course</label></td>
+		<td>
+		
+		<%=collection_select(:unit_planner, :subject_id, Subject.all, :id, :titleize, {:prompt => true})%>
+		<%=form.text_field :course%>
+		
+		</td>
+
+		<td><label>MYP Level:</label><%= form.select :blooms_level, %w[1 2 3 4 5 ] %></td></tr>
+
+		<tr><td><label>Unit Topic</label></td><td colspan="2"><%= form.text_field :unit_topic, :style=>"width:440px;" %></td></tr>
+		<tr><td><label>Unit Title</label></td><td colspan="2"><%= form.text_field :unit_title, :style=>"width:440px;" %></td></tr>
+		<tr><td><label>Teacher(s)</label></td><td colspan="2"><%= form.text_field :teachers, :style=>"width:440px;" %></td></tr>
+		<tr><td><label>Time frame and duration</label></td><td><%= form.text_field :time_frame %></td><td><label>Year:</label><%= form.select :year, [["2009-2010","2009"], ["2010-2011","2010"]] %></td></tr>
+	</table>
+
+	<h1>Stage 1: Unit Outcome Visioning</h1>
+	<h2>Integrate significant concept, area of interaction and unit question</h2>
+
+	<div style="float:left;width:40%;">
+		<div style="margin:5px;background-color:yellow;width:100%;text-align:center;border:1px solid #000000">
+			<h3>Area of Interaction</h3>
+			(How will this area of interaction provide a focused context for this unit?)
+		</div>
+		<div style="height:100px;margin:5px;width:100%;border:1px solid #000000">
+		<%= form.select :area_of_interaction, ["Approaches to Learning", "Environments", "Heath and Social Education", "Human Ingenuity", "Community and Service"] %>
+	</div>
+</div>
+
+<div style="float:right;width:40%;">
+
+	<div style="height:90px;margin:5px;background-color:yellow;width:100%;text-align:center;border:1px solid #000000">
+		<h3>Significant Concept(s)</h3>
+		Interdisiplinary
+		Reflects the AOI
+	</div>
+
+	<%= form.text_area :significant_concept, :style=>"height:100px;margin:5px;width:100%;border:1px solid #000000" %>
+
+</div>
+
+<div class="" style="clear:both;margin-left:auto;margin-right:auto;width:40%;">
+	<div style="text-align:center;height:90px;background-color:yellow;margin:5px;width:100%;border:1px solid #000000">
+		<h3>Unit Question</h3>
+		Interdisciplinary
+		Reflects the AOI
+		Leads to the Significant Concept
+	</div>
+	<%= form.text_area :unit_question, :style=>"height:100px;margin:5px;width:400px;border:1px solid #000000" %>
+
+
+	<div style="text-align:center;height:90px;background-color:yellow;margin:5px;width:100%;border:1px solid #000000">
+		<h3>Subject Area Question(s) (opt.)</h3>
+		Subject area translation of the Unit Question
+	</div>
+	<%= form.text_area :subject_area_question, :style=>"height:100px;margin:5px;width:400px;border:1px solid #000000" %>
+
+
+</div>
+
+<p>
+	<%= form.label :area_of_interaction %><br />
+	<%= form.select :area_of_interaction, ["Approaches to Learning", "Environments", "Heath and Social Education", "Human Ingenuity", "Community and Service"] %>
+</p>
+
+
+<p>
+	<%= form.label :type_of_task %><br />
+	<%= form.text_field :type_of_task %>
+</p>
+

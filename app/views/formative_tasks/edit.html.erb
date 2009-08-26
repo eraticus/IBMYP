@@ -1,0 +1,13 @@
+<h1>Editing Formative Task</h1>
+
+<% form_for([@unit_planner, @formative_task]) do |f| %>
+  <%= f.error_messages %>
+
+  <%= render :partial => 'form', :object=>f%>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to('Cancel', @formative_task.unit_planner) %>

@@ -1,0 +1,14 @@
+<h1>Editing summative_task</h1>
+
+<% form_for([@unit_planner, @summative_task]) do |f| %>
+  <%= f.error_messages %>
+
+  <%= render :partial => 'form', :object=>f%>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<% #= link_to 'Show', @summative_task %> |
+<%= link_to('Cancel', @summative_task.unit_planner) %>
