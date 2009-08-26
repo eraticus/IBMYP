@@ -1,13 +1,30 @@
 <p>
-  <b>Name:</b>
-  <%=h @subject.name %>
+	<b>Name:</b>
+	<%=h @subject.name %>
 </p>
 
 <p>
-  <b>Description:</b>
-  <%=h @subject.description %>
+	<b>Description:</b>
+	<%=h @subject.description %>
 </p>
 
+<% unless @subject.criterions.empty? %>
+<strong>Criterions</strong>
+<% end %>
+<div style="margin:0px 25px">
+	<table>
+		<%for criterion in @subject.criterions%>
+		<tr>
+			<td><strong><%= criterion.category %>: </strong><%= criterion.title %></td>
+			<td>
+				<%= link_to("View", criterion_path(criterion))%> |
+				<%= link_to("Edit", edit_criterion_path(criterion))%> |
+				<%= link_to "Delete", criterion, :confirm=>"Are you sure?", :method=>"delete" %>
+			</td>
+		</tr>
+		<%end%>
+	</table>
+</div>
 
 <%= link_to 'Edit', edit_subject_path(@subject) %> |
 <%= link_to 'Back', subjects_path %>

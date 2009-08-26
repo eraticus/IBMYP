@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :criterions
+
   map.resources :standards
 
   map.resources :standard_groups

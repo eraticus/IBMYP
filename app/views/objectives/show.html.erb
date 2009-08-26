@@ -5,7 +5,7 @@
 
 <p>
   <b>Tag:</b>
-  <%=h @objective.tag %>
+  <%=h @objective.subcategory %>
 </p>
 
 <p>
@@ -14,5 +14,6 @@
 </p>
 
 
+<%= link_to "Back to Criterion \'#{@objective.criterion.subject.titleize}:#{@objective.criterion.category}\'", criterion_path(@objective.criterion) %> |
 <%= link_to 'Edit', edit_objective_path(@objective) %> |
 <%= link_to 'Back', objectives_path %>

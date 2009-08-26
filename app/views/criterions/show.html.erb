@@ -1,0 +1,28 @@
+<p>
+<strong>Tag:</strong>
+  <%= @criterion.category %>
+</p>
+
+<p>
+<strong>Description:</strong>
+<%= @criterion['title'] %>
+</p>
+
+<div style="margin:0px 25px">
+	<table>
+		<%for objective in @criterion.objectives%>
+		<tr>
+			<td><strong><%= objective.subcategory %>: </strong><%= objective.description %></td>
+			<td>
+				<%= link_to("Show", objective_path(objective))%> |
+				<%= link_to("Edit", edit_objective_path(objective))%> |
+				<%= link_to "Delete", objective, :confirm=>"Are you sure?", :method=>"delete" %>
+			</td>
+		</tr>
+		<%end%>
+	</table>
+</div>
+
+<%= link_to "Back To \'#{@criterion.subject.titleize}\' Subject", subject_path(@criterion.subject) %> |
+<%= link_to 'Edit', edit_criterion_path(@criterion) %> |
+<%= link_to 'Back', criterions_path %>

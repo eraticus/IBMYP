@@ -10,9 +10,9 @@
   <tr>
     <td><%=h subject.name %></td>
     <td><%=h subject.description %></td>
-    <td><%= link_to 'Show', subject %></td>
+    <td><%= link_to 'View', subject %></td>
     <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
-    <td><%= link_to 'Destroy', subject, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Delete', subject, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
