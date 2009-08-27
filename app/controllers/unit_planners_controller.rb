@@ -68,7 +68,7 @@ class UnitPlannersController < ApplicationController
   def edit_tasks
     @unit_planner = UnitPlanner.find(params[:id])
   end
-  
+    
   # edit backward planner section of unit_planner
   def edit_backward_planner
     @unit_planner = UnitPlanner.find(params[:id])
@@ -143,7 +143,19 @@ class UnitPlannersController < ApplicationController
       end
     end
   end
-
+  
+  def edit_vision
+    edit
+  end
+  
+  def edit_identification
+    edit
+  end
+  
+  def update_identification
+    update
+  end
+  
   # PUT /unit_planners/1
   # PUT /unit_planners/1.xml
   def update

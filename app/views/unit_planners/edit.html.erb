@@ -1,17 +1,229 @@
-<h1>Editing</h1>
+<div class="section clear">
+	<h2>Stage 0: Identification Section</h2>
 
-<% form_for(@unit_planner) do |f| %>
-  <%= f.error_messages %>
+	<div>
+		<b>Author:</b>
+		<%=h @unit_planner.user.username if @unit_planner.user %>
+	</div>
 
-<%= render :partial => f %>
+	<div>
+		<b>Subject area:</b>
+		<%=h @unit_planner.subject.titleize %>
+	</div>
 
-  <p>
-  <%= f.submit 'Update'%>
-  </p>
-  
+	<div>
+		<b>Course:</b>
+		<%=h @unit_planner.course %>
+	</div>
 
-        
-<% end %>
+	<div>
+		<b>Blooms Level:</b>
+		<%=h blooms_text(@unit_planner.blooms_level) %>
+	</div>
 
-<%= link_to 'Show', @unit_planner %> |
+	<div>
+		<b>Unit topic:</b>
+		<%=h @unit_planner.unit_topic %>
+	</div>
+
+	<div>
+		<b>Unit title:</b>
+		<%=h @unit_planner.unit_title %>
+	</div>
+
+	<div>
+		<b>Teachers:</b>
+		<%=h @unit_planner.teachers %>
+	</div>
+
+	<div>
+		<b>Time frame:</b>
+		<%=h @unit_planner.time_frame %>
+	</div>
+
+	<div>
+		<b>Year:</b>
+		<%=h @unit_planner.year %>
+	</div>
+	<div class="navigation">
+		<%= link_to 'Edit Identification', edit_identification_unit_planner_path(@unit_planner) %>
+	</div>
+</div>
+
+<div class="section">
+	<h2>Stage 1: Unit Outcome Visioning</h2>
+	<div class="section">
+		<div class="title">Vision</div>
+		<div>
+			<b>Area of Interaction:</b>
+			<%=h @unit_planner.area_of_interaction%>
+		</div>
+
+		<div>
+			<b>Significant Concepts:</b>
+			<%=h @unit_planner.significant_concept%>
+		</div>
+
+		<div>
+			<b>Unit Question:</b>
+			<%=h @unit_planner.unit_question%>
+		</div>
+		<div class="navigation">
+			<%= link_to 'Edit Vision', edit_vision_unit_planner_path(@unit_planner) %>
+		</div>
+	</div>
+
+
+	<div class="section" id="unit_objectives">
+		<div class="title">MYP Objectives:</div>
+
+		<%for objective in @unit_planner.objectives.all(:include=>:criterion, :order=>'criterions.category, objectives.subcategory') %>
+		<div style="margin:5px">
+			<%= "<b>#{objective.criterion.category}#{objective.subcategory}:</b> #{objective.description}" %>
+		</div> 
+
+		<%end%>
+
+		<div class="navigation">
+			<%= link_to ('Edit Objectives', edit_objectives_unit_planner_path(@unit_planner)) %>
+		</div>
+
+	</div>
+
+	<div class="section">
+		<div class="title" style="border-bottom:1px solid #555">
+			MYP Criteria:
+		</div>
+		<% @unit_planner.criterions.each do |criterion| %>
+		<div>Criterion <%="#{criterion.category}: #{criterion.title}"%></div>
+		<% end %>
+	</div>
+
+	<!-- summative tasks -->
+	<div class="section" id="summative_tasks">
+		<table>
+			<tr class="tint"><td colspan="4"><label>Summative Assessment Task(s)</label></td><td><label>MYP Criteria</label></td><td><label>Blooms Level</label></td><td><label>Type of Task</label></td></tr>
+			<%=render :partial=>'summative_task', :collection=>@unit_planner.summative_tasks %>
+		</table>
+		<div class="navigation"><%=link_to 'New Summative Task', new_unit_planner_summative_task_path(@unit_planner)%></div>
+	</div>
+</div>
+
+<div class="section" id="backward_planner">
+	<h2>Stage 2: Backward Planning</h2>
+	<div class="section">
+		<div class="title">Learning Readiness</div>
+
+		<div style="height:36px">
+			<%=h @unit_planner.learning_readiness %>
+		</div>
+
+	</div>
+
+	<div class="section">
+		<div class="title">Unit Content</div>
+
+		<b>Concepts:</b>
+		<div style="height:36px">
+			<%=h @unit_planner.unit_content_concepts %>
+		</div>
+
+		<b>Skills:</b>
+		<div style="height:36px">
+			<%=h @unit_planner.unit_content_skills %>
+		</div>
+
+	</div>
+
+	<div class="section">
+		<div class="title">Standards</div>
+		<div style="height:36px">
+			<%=h @unit_planner.standards %>
+		</div>
+
+	</div>
+	<div class="section">
+		<div class="title">Intercultural Awareness -- International Mindedness</div>
+		<div style="height:36px">
+			<%=h @unit_planner.intercultural_awareness %>
+		</div>
+
+
+	</div>
+	<div class="section">
+		<div class="title">Learning Support</div>
+
+		<b>Learner Profile:</b>
+		<div style="height:36px">
+			<%=h @unit_planner.learner_profile %>
+		</div>
+
+		<b>Learning Support:</b>
+		<div style="height:36px">
+			<%=h @unit_planner.learning_support %>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="title">Teaching Strategies to Support Learning</div>
+
+		<div style="height:36px">
+			<%=h @unit_planner.teaching_strategies %>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="title">Approaches to Learning Skills</div>
+
+		<b>Skill Category:</b>
+		<div style="height:36px">
+			<%=h @unit_planner.approaches_skill %>
+		</div>
+		<b>Strategies:</b>
+		<div style="height:36px">
+			<%=h @unit_planner.approaches_strategy %>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="title">Learning Activities</div>
+
+		<div style="height:36px">
+			<%=h @unit_planner.learning_activities %>
+		</div>
+	</div>
+
+	<div class="navigation"><%=link_to 'Edit Backward Plannner', edit_backward_planner_unit_planner_path(@unit_planner)%></div>
+</div>
+	
+	<div class="section" id='formative_tasks'>
+		<div class="title">Formative Tasks</div>
+
+		<!-- change architecture to-->
+		<!-- render :partial=>'formative_tasks' # plural!! -->
+		<table width="100%">
+			<tr class="tint"><td colspan="4"><label>Formative Task(s)</label></td><td><label>MYP Objectives</label></td><td><label>Blooms Level</label></td><td><label>Type of Task</label></td></tr>
+			<%=render :partial=>'formative_task', :collection=>@unit_planner.formative_tasks %>
+		</table>
+		<div class="navigation"><%=link_to 'New Formative Task', new_unit_planner_formative_task_path(@unit_planner)%></div>
+
+	</div>
+	<div class="section">
+		<div class="title">Resources</div>
+		
+		<div style="height:36px">
+			<%=h @unit_planner.resources %>
+		</div>
+		
+	</div>
+
+
+
+</div>
+
+
+<%= link_to 'Edit', edit_unit_planner_path(@unit_planner) %> |
+<%= link_to 'Edit Objectives', edit_objectives_unit_planner_path(@unit_planner) %> |
+<%#= link_to 'Edit Summative Assessment and Formative Tasks', edit_tasks_unit_planner_path(@unit_planner) %>
+<%= link_to 'New Summative Task', new_unit_planner_summative_task_path(@unit_planner) %> |
 <%= link_to 'Back', unit_planners_path %>

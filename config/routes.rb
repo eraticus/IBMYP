@@ -23,7 +23,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :summative_tasks
   map.resources :formative_tasks
 
-  map.resources :unit_planners, :member=>{:edit_objectives=>:get, :update_objectives=>:put, :edit_tasks=>:get, :update_tasks=>:put, :edit_backward_planner=>:get, :update_backward_planner=>:put} do |unit_planner|
+  # change edit_objectives to restful under objectives
+  map.resources :unit_planners, :member=>{:edit_identification=>:get, :edit_vision=>:get, :edit_objectives=>:get, :update_objectives=>:put, :edit_tasks=>:get, :update_tasks=>:put, :edit_backward_planner=>:get, :update_backward_planner=>:put} do |unit_planner|
     unit_planner.resources :summative_tasks
     unit_planner.resources :formative_tasks
     
