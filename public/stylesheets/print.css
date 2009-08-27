@@ -1,3 +1,13 @@
-.navigation {
+/* trim off stuff that should never print */
+a {
+	display:none;
+}
+
+
+.no_print {
+	display:none;
+}
+
+#user_nav {
 	display:none;
 }

@@ -1,11 +1,11 @@
 <p>
-<strong>Tag:</strong>
-  <%= @criterion.category %>
+	<strong>Tag:</strong>
+	<%= @criterion.category %>
 </p>
 
 <p>
-<strong>Description:</strong>
-<%= @criterion['title'] %>
+	<strong>Description:</strong>
+	<%= @criterion['title'] %>
 </p>
 
 <div style="margin:0px 25px">
@@ -21,6 +21,9 @@
 		</tr>
 		<%end%>
 	</table>
+	<div style="navigation">
+		<%=link_to("New Objective", new_criterion_objective_path(@criterion))%>
+	</div>
 </div>
 
 <%= link_to "Back To \'#{@criterion.subject.titleize}\' Subject", subject_path(@criterion.subject) %> |

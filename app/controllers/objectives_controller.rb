@@ -1,4 +1,7 @@
 class ObjectivesController < ApplicationController
+  
+  layout 'admin'
+  
   # GET /objectives
   # GET /objectives.xml
   def index
@@ -24,7 +27,8 @@ class ObjectivesController < ApplicationController
   # GET /objectives/new
   # GET /objectives/new.xml
   def new
-    @objective = Objective.new
+    @criterion = Criterion.find params[:criterion_id]
+    @objective = @criterion.objectives.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,12 +44,13 @@ class ObjectivesController < ApplicationController
   # POST /objectives
   # POST /objectives.xml
   def create
-    @objective = Objective.new(params[:objective])
+    @criterion = Criterion.find(params[:criterion_id])
+    @objective = @criterion.objectives.new(params[:objective])
 
     respond_to do |format|
       if @objective.save
         flash[:notice] = 'Objective was successfully created.'
-        format.html { redirect_to(@objective) }
+        format.html { redirect_to(@criterion) }
         format.xml  { render :xml => @objective, :status => :created, :location => @objective }
       else
         format.html { render :action => "new" }

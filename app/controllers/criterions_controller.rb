@@ -1,4 +1,6 @@
 class CriterionsController < ApplicationController
+  layout 'admin'
+  
   # GET /criterions
   # GET /criterions.xml
   def index

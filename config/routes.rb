@@ -1,5 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :criterions
+  
+  map.resources :criterions do |criterion|
+    criterion.resources :objectives # mostly for creation of new criterions
+  end
 
   map.resources :standards
 

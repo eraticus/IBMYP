@@ -1,4 +1,7 @@
 class SubjectsController < ApplicationController
+  
+  layout "admin"
+  
   # GET /subjects
   # GET /subjects.xml
   def index
