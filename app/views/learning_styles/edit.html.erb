@@ -1,20 +1,13 @@
 <h1>Editing learning_style</h1>
 
-<% form_for(@learning_style) do |f| %>
+<% form_for([@unit_planner, @learning_style]) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :style %><br />
-    <%= f.text_field :style %>
-  </p>
-  <p>
-    <%= f.label :explanation %><br />
-    <%= f.text_field :explanation %>
-  </p>
+<%= render :partial => 'form', :object=>f %>
+
   <p>
     <%= f.submit 'Update' %>
   </p>
 <% end %>
 
-<%= link_to 'Show', @learning_style %> |
-<%= link_to 'Back', learning_styles_path %>
+<%= link_to 'Back to Unit Planner', unit_planner_path(@unit_planner, :anchor=>'learning_styles') %>

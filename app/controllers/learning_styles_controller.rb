@@ -35,7 +35,8 @@ class LearningStylesController < ApplicationController
 
   # GET /learning_styles/1/edit
   def edit
-    @learning_style = LearningStyle.find(params[:id])
+    @unit_planner = UnitPlanner.find(params[:unit_planner_id])
+    @learning_style = @unit_planner.learning_styles.find(params[:id])
   end
 
   # POST /learning_styles
@@ -59,12 +60,13 @@ class LearningStylesController < ApplicationController
   # PUT /learning_styles/1
   # PUT /learning_styles/1.xml
   def update
-    @learning_style = LearningStyle.find(params[:id])
+    @unit_planner = UnitPlanner.find(params[:unit_planner_id])
+    @learning_style = @unit_planner.learning_styles.find(params[:id])
 
     respond_to do |format|
       if @learning_style.update_attributes(params[:learning_style])
         flash[:notice] = 'LearningStyle was successfully updated.'
-        format.html { redirect_to(@learning_style) }
+        format.html { redirect_to(unit_planner_path(@unit_planner, :anchor=>"learning_styles")) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
