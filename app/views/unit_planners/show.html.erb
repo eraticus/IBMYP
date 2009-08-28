@@ -163,6 +163,12 @@
 			<%=h @unit_planner.learning_support %>
 		</div>
 	</div>
+	
+	<div class="section">
+		 <div id="learning_styles" class="title">Learning Styles</div>
+		<%=render :partial=>'learning_styles/learning_styles', :object=>@unit_planner.learning_styles%>
+	<div class="navigation"><%= link_to "New Learning Style", new_unit_planner_learning_style_path(@unit_planner) %></div>
+	</div>
 
 	<div class="section">
 		<div class="title">Teaching Strategies to Support Learning</div>

@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :learning_styles
+
   
   map.resources :criterions do |criterion|
     criterion.resources :objectives # mostly for creation of new criterions
@@ -30,7 +32,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :unit_planners, :member=>{:edit_identification=>:get, :edit_vision=>:get, :edit_objectives=>:get, :update_objectives=>:put, :edit_tasks=>:get, :update_tasks=>:put, :edit_backward_planner=>:get, :update_backward_planner=>:put} do |unit_planner|
     unit_planner.resources :summative_tasks
     unit_planner.resources :formative_tasks
-    
+    unit_planner.resources :learning_styles
   end
   
   map.root :unit_planners  

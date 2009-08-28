@@ -1,0 +1,9 @@
+  <p>
+    <%= form.label :style %><br />
+    <%= select_tag('learning_style[style]', options_for_select(%w{Balanced Caring Communicators Inquirers Knowledgeable Open-minded Principled Reflective Risk-takers Thinkers}, @learning_style.style)) %>
+  </p>
+
+  <p>
+    <%= form.label :explanation %><br />
+    <%= form.text_field :explanation %>
+  </p>

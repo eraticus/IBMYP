@@ -1,0 +1,20 @@
+<h1>Editing learning_style</h1>
+
+<% form_for(@learning_style) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :style %><br />
+    <%= f.text_field :style %>
+  </p>
+  <p>
+    <%= f.label :explanation %><br />
+    <%= f.text_field :explanation %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @learning_style %> |
+<%= link_to 'Back', learning_styles_path %>

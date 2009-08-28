@@ -1,0 +1,22 @@
+<h1>Listing learning_styles</h1>
+
+<table>
+  <tr>
+    <th>Style</th>
+    <th>Explanation</th>
+  </tr>
+
+<% @learning_styles.each do |learning_style| %>
+  <tr>
+    <td><%=h learning_style.style %></td>
+    <td><%=h learning_style.explanation %></td>
+    <td><%= link_to 'Show', learning_style %></td>
+    <td><%= link_to 'Edit', edit_learning_style_path(learning_style) %></td>
+    <td><%= link_to 'Destroy', learning_style, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New learning_style', new_learning_style_path %>

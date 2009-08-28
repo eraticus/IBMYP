@@ -1,0 +1,19 @@
+<table>
+
+	<tr>
+		<th>Style</th>
+		<th>Explanation</th>
+	</tr>
+
+	<%for learning_style in learning_styles%>
+	<tr>
+
+		<td><%=h learning_style.style %></td><td><%=h learning_style.explanation %></td>
+		<td>
+			<%=link_to "Edit", edit_unit_planner_learning_style_path(@unit_planner, learning_style) %> |
+			<%=link_to "Delete", [@unit_planner, learning_style], :confirm=>"Are you sure?", :method=>:delete%>
+			
+		</td>
+	</tr>
+	<%end%>
+</table>
