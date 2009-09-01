@@ -1,21 +1,16 @@
-<h1>Listing standards</h1>
+<h1>Listing standard_groups</h1>
 
 <table>
   <tr>
-    <th>Standard group</th>
     <th>Tag</th>
     <th>Description</th>
-    <th>Middle</th>
-    <th>High</th>
   </tr>
 
 <% @standards.each do |standard| %>
   <tr>
-    <td><%=h standard.standard_group_id %></td>
-    <td><%=h standard.tag %></td>
+    <td><%=h standard.label %></td>
+    <td><%=h standard.name %></td>
     <td><%=h standard.description %></td>
-    <td><%=h standard.middle %></td>
-    <td><%=h standard.high %></td>
     <td><%= link_to 'Show', standard %></td>
     <td><%= link_to 'Edit', edit_standard_path(standard) %></td>
     <td><%= link_to 'Destroy', standard, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -24,5 +19,3 @@
 </table>
 
 <br />
-
-<%= link_to 'New standard', new_standard_path %>

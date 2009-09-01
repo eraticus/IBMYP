@@ -1,27 +1,19 @@
-<h1>Editing standard</h1>
+<h1>Editing standard_group</h1>
 
-<% form_for(@standard) do |f| %>
+<% form_for([@subject, @standard]) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :standard_group_id %><br />
-    <%= f.text_field :standard_group_id %>
+    <%= f.label :label %><br />
+    <%= f.text_field :label %>
   </p>
   <p>
-    <%= f.label :tag %><br />
-    <%= f.text_field :tag %>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
   </p>
   <p>
     <%= f.label :description %><br />
     <%= f.text_field :description %>
-  </p>
-  <p>
-    <%= f.label :middle %><br />
-    <%= f.check_box :middle %>
-  </p>
-  <p>
-    <%= f.label :high %><br />
-    <%= f.check_box :high %>
   </p>
   <p>
     <%= f.submit 'Update' %>
@@ -29,4 +21,4 @@
 <% end %>
 
 <%= link_to 'Show', @standard %> |
-<%= link_to 'Back', standards_path %>
+<%= link_to 'Cancel', subject_path(@subject) %>

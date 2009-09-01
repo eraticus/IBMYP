@@ -5,14 +5,16 @@ class UnitPlanner < ActiveRecord::Base
   has_many :summative_tasks, :dependent=>:destroy
   has_many :formative_tasks, :dependent=>:destroy
   has_many :learning_styles, :dependent=>:destroy
+  
+  validates_presence_of :teachers, :message => "please include at least one teacher"
 
   has_and_belongs_to_many :objectives, :include=>:criterion , :order => 'objectives.subcategory' #'criterions.category, objectives.subcategory'
   #has and belongs to many criterions
 
   #begin lifecycle methods
-  before_save {|y| y.objectives.clear if y.subject_id_changed?}
-  before_save {|y| y.summative_tasks.each{|x| x.trim_criterions}}
-  before_save { |y|  y.formative_tasks.each{|x| x.trim_objectives }}
+  after_save {|y| y.objectives.clear if y.subject_id_changed?}
+  after_save {|y| y.summative_tasks.each{|x| x.trim_criterions}}
+  after_save { |y|  y.formative_tasks.each{|x| x.trim_objectives }}
 
   # end lifecycle methods
 

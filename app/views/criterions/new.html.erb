@@ -1,7 +1,9 @@
 <h1>New criterion</h1>
 
-<% form_for(@criterion) do |f| %>
+<% form_for([@subject, @criterion]) do |f| %>
   <%= f.error_messages %>
+
+<%= render :partial => 'form', :object=>f %>
 
   <p>
     <%= f.submit 'Create' %>

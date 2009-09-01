@@ -1,0 +1,32 @@
+<h1>Editing standard</h1>
+
+<% form_for(@standard) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :standard_group_id %><br />
+    <%= f.text_field :standard_group_id %>
+  </p>
+  <p>
+    <%= f.label :tag %><br />
+    <%= f.text_field :tag %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :middle %><br />
+    <%= f.check_box :middle %>
+  </p>
+  <p>
+    <%= f.label :high %><br />
+    <%= f.check_box :high %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @standard %> |
+<%= link_to 'Back', standards_path %>

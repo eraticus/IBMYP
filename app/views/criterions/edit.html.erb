@@ -1,21 +1,9 @@
 <h1>Editing criterion</h1>
 
-<% form_for(@criterion) do |f| %>
+<% form_for([@subject, @criterion]) do |f| %>
   <%= f.error_messages %>
 
-<!--["id", "subject_id", "category", "title", "created_at", "updated_at"]-->
-
-
-
-<strong>Label:</strong>
-<p>
-  <%= f.text_field 'category' %>
-</p>
-
-<strong>Description:</strong>
-<p>
-  <%= f.text_field 'title' %>
-</p>
+<%= render :partial => 'form', :object=>f %>
 
 
   <p>

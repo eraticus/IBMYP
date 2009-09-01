@@ -1,11 +1,11 @@
 <p>
-  <b>Standard group:</b>
-  <%=h @standard.standard_group_id %>
+  <b>Tag:</b>
+  <%=h @standard.label %>
 </p>
 
 <p>
-  <b>Tag:</b>
-  <%=h @standard.tag %>
+  <b>Title:</b>
+  <%=h @standard.name %>
 </p>
 
 <p>
@@ -13,16 +13,6 @@
   <%=h @standard.description %>
 </p>
 
-<p>
-  <b>Middle:</b>
-  <%=h @standard.middle %>
-</p>
 
-<p>
-  <b>High:</b>
-  <%=h @standard.high %>
-</p>
-
-
-<%= link_to 'Edit', edit_standard_path(@standard) %> |
-<%= link_to 'Back', standards_path %>
+<%= link_to 'Edit', edit_subject_standard_path(@subject, @standard) %> |
+<%= link_to 'Back', subject_path(@subject) %>

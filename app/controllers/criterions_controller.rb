@@ -26,7 +26,8 @@ class CriterionsController < ApplicationController
   # GET /criterions/new
   # GET /criterions/new.xml
   def new
-    @criterion = Criterion.new
+    @subject = Subject.find params[:subject_id]
+    @criterion = @subject.criterions.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,13 +37,15 @@ class CriterionsController < ApplicationController
 
   # GET /criterions/1/edit
   def edit
-    @criterion = Criterion.find(params[:id])
+    @subject = Subject.find params[:subject_id]
+    @criterion = @subject.criterions.find(params[:id])
   end
 
   # POST /criterions
   # POST /criterions.xml
   def create
-    @criterion = Criterion.new(params[:criterion])
+    @subject = Subject.find params[:subject_id]
+    @criterion = @subject.criterions.new(params[:criterion])
 
     respond_to do |format|
       if @criterion.save
@@ -59,7 +62,8 @@ class CriterionsController < ApplicationController
   # PUT /criterions/1
   # PUT /criterions/1.xml
   def update
-    @criterion = Criterion.find(params[:id])
+    @subject = Subject.find(param[:subject_id])
+    @criterion = @subject.criterions.find(params[:id])
 
     respond_to do |format|
       if @criterion.update_attributes(params[:criterion])
@@ -80,7 +84,7 @@ class CriterionsController < ApplicationController
     @criterion.destroy
 
     respond_to do |format|
-      format.html { redirect_to(criterions_url) }
+      format.html { redirect_to(subject_url(@criterion.subject)) }
       format.xml  { head :ok }
     end
   end

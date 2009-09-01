@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :learner_profiles
+
   map.resources :learning_styles
 
   
@@ -6,11 +8,14 @@ ActionController::Routing::Routes.draw do |map|
     criterion.resources :objectives # mostly for creation of new criterions
   end
 
+  map.resources :yardsticks
+
   map.resources :standards
 
-  map.resources :standard_groups
-
-  map.resources :subjects
+  map.resources :subjects, :has_many=>[:standards, :criterions] do |subject|
+    #subject.resource :criterions
+ #   subject.resource :standards
+  end
 
 
 

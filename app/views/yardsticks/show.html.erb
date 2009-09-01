@@ -1,0 +1,28 @@
+<p>
+  <b>Standard group:</b>
+  <%=h @standard.standard_group_id %>
+</p>
+
+<p>
+  <b>Tag:</b>
+  <%=h @standard.tag %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @standard.description %>
+</p>
+
+<p>
+  <b>Middle:</b>
+  <%=h @standard.middle %>
+</p>
+
+<p>
+  <b>High:</b>
+  <%=h @standard.high %>
+</p>
+
+
+<%= link_to 'Edit', edit_standard_path(@standard) %> |
+<%= link_to 'Back', standards_path %>

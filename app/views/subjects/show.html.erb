@@ -1,3 +1,5 @@
+<h1>Subject: <em><%= h @subject.name.titleize %></em></h1>
+
 <p>
 	<b>Name:</b>
 	<%=h @subject.name %>
@@ -8,10 +10,8 @@
 	<%=h @subject.description %>
 </p>
 
-<% unless @subject.criterions.empty? %>
-<strong>Criterions</strong>
-<% end %>
-<div style="margin:0px 25px">
+<div class="section">
+	<strong>Criterions</strong>
 	<table>
 		<%for criterion in @subject.criterions%>
 		<tr>
@@ -24,6 +24,28 @@
 		</tr>
 		<%end%>
 	</table>
+	<div class="navigation">
+	<%= link_to("New Criterion", new_subject_criterion_path(@subject))%>
+	</div>
+</div>
+
+<div class="section" id="standards">
+	<strong>Standards</strong>
+	<table>
+		<%for standard in @subject.standards%>
+		<tr>
+			<td><strong><%=standard.label%>: </strong><%= standard.name %></td>
+			<td>
+				<%= link_to("View", standard_path(standard))%> |
+				<%= link_to("Edit", edit_standard_path(standard))%> |
+				<%= link_to "Delete", standard, :confirm=>"Are you sure?", :method=>"delete" %>
+			</td>
+		</tr>
+		<%end%>
+	</table>
+	<div class="navigation">
+	<%= link_to("New Standard", new_subject_standard_path(@subject))%>
+	</div>
 </div>
 
 <%= link_to 'Edit', edit_subject_path(@subject) %> |
