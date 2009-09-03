@@ -14,5 +14,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_subject_standard_path(@subject, @standard) %> |
-<%= link_to 'Back', subject_path(@subject) %>
+<%= link_to 'Edit', edit_course_standard_path(@course, @standard) %> |
+<%= link_to 'Back', subject_course_path(@course.subject, @course, :anchor=>dom_id(@standard)) %>

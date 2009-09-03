@@ -16,8 +16,8 @@ class StandardsController < ApplicationController
   # GET /standards/1
   # GET /standards/1.xml
   def show # probably not used
-    @standard = Standard.find(params[:id])
-    @subject = @standard.subject
+    @course = Course.find(params[:course_id])
+    @standard = @course.standards.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -28,26 +28,26 @@ class StandardsController < ApplicationController
   # GET /standards/new
   # GET /standards/new.xml
   def new
-    @subject = Subject.find(params[:subject_id])
-    @standard = @subject.standards.new
+    @course = Course.find(params[:course_id])
+    @standard = @course.standards.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @standards }
+      format.xml  { render :xml => @standard }
     end
   end
 
   # GET /standards/1/edit
   def edit
-    @subject = Subject.find(params[:subject_id])
-    @standard = @subject.standards.find(params[:id])
+    @course = Course.find(params[:course_id])
+    @standard = @course.standards.find(params[:id])
   end
 
   # POST /standards
   # POST /standards.xml
   def create
-    @subject = Subject.find(params[:subject_id])
-    @standard = @subject.standards.new(params[:standard])
+    @course = Course.find(params[:course_id])
+    @standard = @course.standards.new(params[:standard])
 
     respond_to do |format|
       if @standard.save
@@ -85,7 +85,7 @@ class StandardsController < ApplicationController
     @standard.destroy
 
     respond_to do |format|
-      format.html { redirect_to(subject_url(@standard.subject, :anchor=>'standards')) }
+      format.html { redirect_to(course_url(@standard.course, :anchor=>'courses')) }
       format.xml  { head :ok }
     end
   end

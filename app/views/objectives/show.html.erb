@@ -10,6 +10,6 @@
 </p>
 
 
-<%= link_to "Back to Criterion \'#{@objective.criterion.subject.titleize}:#{@objective.criterion.category}\'", criterion_path(@objective.criterion) %> |
+<%= link_to "Back to Criterion \'#{@objective.criterion.subject.name}:#{@objective.criterion.category}\'", criterion_path(@objective.criterion) %> |
 <%= link_to 'Edit', edit_objective_path(@objective) %> |
 <%= link_to 'Back', objectives_path %>

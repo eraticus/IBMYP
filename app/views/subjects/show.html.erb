@@ -1,9 +1,4 @@
-<h1>Subject: <em><%= h @subject.name.titleize %></em></h1>
-
-<p>
-	<b>Name:</b>
-	<%=h @subject.name %>
-</p>
+<h1>Subject: <em><%= h @subject.name %></em></h1>
 
 <p>
 	<b>Description:</b>
@@ -18,7 +13,7 @@
 			<td><strong><%= criterion.category %>: </strong><%= criterion.title %></td>
 			<td>
 				<%= link_to("View", criterion_path(criterion))%> |
-				<%= link_to("Edit", edit_criterion_path(criterion))%> |
+				<%= link_to("Edit", edit_subject_criterion_path(@subject, criterion))%> |
 				<%= link_to "Delete", criterion, :confirm=>"Are you sure?", :method=>"delete" %>
 			</td>
 		</tr>
@@ -29,22 +24,22 @@
 	</div>
 </div>
 
-<div class="section" id="standards">
-	<strong>Standards</strong>
+<div class="section" id="courses">
+	<strong>Courses</strong>
 	<table>
-		<%for standard in @subject.standards%>
-		<tr>
-			<td><strong><%=standard.label%>: </strong><%= standard.name %></td>
+		<%for course in @subject.courses%>
+		<tr id="<%= dom_id course %>">
+			<td><strong><%=course.name%></strong></td>
 			<td>
-				<%= link_to("View", standard_path(standard))%> |
-				<%= link_to("Edit", edit_standard_path(standard))%> |
-				<%= link_to "Delete", standard, :confirm=>"Are you sure?", :method=>"delete" %>
+				<%= link_to("View", subject_course_path(@subject, course))%> |
+				<%= link_to("Edit", edit_subject_course_path(@subject, course))%> |
+				<%= link_to "Delete", course, :confirm=>"Are you sure?", :method=>"delete" %>
 			</td>
 		</tr>
 		<%end%>
 	</table>
 	<div class="navigation">
-	<%= link_to("New Standard", new_subject_standard_path(@subject))%>
+	<%= link_to("New Course", new_subject_course_path(@subject))%>
 	</div>
 </div>
 

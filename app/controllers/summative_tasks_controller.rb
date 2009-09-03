@@ -72,6 +72,10 @@ class SummativeTasksController < ApplicationController
   # PUT /summative_tasks/1.xml
   def update
     @summative_task = SummativeTask.find(params[:id])
+    @unit_planner = @summative_task.unit_planner
+    
+    #params[:summative_task][:criterion_ids] ||= [] # checkbox correction
+    
 
     respond_to do |format|
       if @summative_task.update_attributes(params[:summative_task])

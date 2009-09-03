@@ -8,12 +8,12 @@
 	<tr><td><label>Subject Area / Course</label></td>
 		<td>
 		
-		<%=collection_select(:unit_planner, :subject_id, Subject.all, :id, :titleize, {:prompt => true})%>
+		<%=collection_select(:unit_planner, :subject_id, Subject.all, :id, :name, {:prompt => true})%>
 		<%=form.text_field :course%>
 		
 		</td>
 
-		<td><label>MYP Level:</label><%= form.select :blooms_level, %w[1 2 3 4 5 ] %></td></tr>
+		<td><label>Level:</label><%= form.select :blooms_level, blooms_choices %></td></tr>
 
 		<tr><td><label>Unit Topic</label></td><td colspan="2"><%= form.text_field :unit_topic, :style=>"width:440px;" %></td></tr>
 		<tr><td><label>Unit Title</label></td><td colspan="2"><%= form.text_field :unit_title, :style=>"width:440px;" %></td></tr>
@@ -64,11 +64,6 @@
 
 
 </div>
-
-<p>
-	<%= form.label :area_of_interaction %><br />
-	<%= form.select :area_of_interaction, ["Approaches to Learning", "Environments", "Heath and Social Education", "Human Ingenuity", "Community and Service"] %>
-</p>
 
 
 <p>

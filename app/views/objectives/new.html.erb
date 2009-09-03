@@ -1,10 +1,10 @@
-<h1>New objective</h1>
+<div style="font-weight:bold"><%= "#{@criterion.subject.name}->#{@criterion.title}->New objective" %></div>
 
-<% form_for(@objective) do |f| %>
+<% form_for([@criterion, @objective]) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :tag %><br />
+    <%= f.label :label %><br />
     <%= f.text_field :subcategory %>
   </p>
   <p>

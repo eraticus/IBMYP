@@ -62,7 +62,7 @@ class CriterionsController < ApplicationController
   # PUT /criterions/1
   # PUT /criterions/1.xml
   def update
-    @subject = Subject.find(param[:subject_id])
+    @subject = Subject.find(params[:subject_id])
     @criterion = @subject.criterions.find(params[:id])
 
     respond_to do |format|

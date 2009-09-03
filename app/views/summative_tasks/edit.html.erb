@@ -11,4 +11,4 @@
 <% end %>
 
 <% #= link_to 'Show', @summative_task %> |
-<%= link_to('Cancel', @summative_task.unit_planner) %>
+<%= link_to('Cancel', unit_planner_path(@summative_task.unit_planner, :anchor=>"summative_tasks")) %>

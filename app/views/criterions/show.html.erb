@@ -27,6 +27,5 @@
 	</div>
 </div>
 
-<%= link_to "Back To \'#{@criterion.subject.titleize}\' Subject", subject_path(@criterion.subject) %> |
-<%= link_to 'Edit', edit_criterion_path(@criterion) %> |
-<%= link_to 'Back', criterions_path %>
+<%= link_to "Back To \'#{@criterion.subject.name}\' Subject", subject_path(@criterion.subject) %> |
+<%= link_to 'Edit', edit_criterion_path(@criterion) %>

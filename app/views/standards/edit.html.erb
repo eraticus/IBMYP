@@ -1,6 +1,6 @@
-<h1>Editing standard_group</h1>
+<h1>Editing Standard</h1>
 
-<% form_for([@subject, @standard]) do |f| %>
+<% form_for([@course, @standard]) do |f| %>
   <%= f.error_messages %>
 
   <p>
@@ -20,5 +20,5 @@
   </p>
 <% end %>
 
-<%= link_to 'Show', @standard %> |
-<%= link_to 'Cancel', subject_path(@subject) %>
+<%= link_to 'Show', [@course, @standard] %> |
+<%= link_to 'Cancel', [@course.subject, @course] %>

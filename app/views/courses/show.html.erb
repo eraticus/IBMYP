@@ -1,0 +1,39 @@
+<p>
+  <b>Name:</b>
+  <%=h @course.name %>
+</p>
+
+<p>
+  <b>Subject:</b>
+  <%=link_to @course.subject.name, @course.subject %>
+</p>
+
+<p>
+  <b>Standards:</b>
+  Not done yet
+</p>
+
+<div class="section">
+	<div class="title">Standards</div>
+	<table>
+		<%for standard in @course.standards%>
+		<tr>
+			<td><strong><%= standard.name %>: </strong><%= standard.description %></td>
+			<td>
+				<%= link_to("Show", [@course, standard])%> |
+				<%= link_to("Edit", edit_course_standard_path(@course, standard))%> |
+				<%= link_to "Delete", standard, :confirm=>"Are you sure?", :method=>"delete" %>
+			</td>
+		</tr>
+		<%end%>
+	</table>
+	<div class="navigation">
+		<%=link_to("New Standard", new_course_standard_path(@course))%>
+	</div>
+</div>
+
+
+
+
+<%= link_to 'Edit', edit_subject_course_path(@subject, @course) %> |
+<%= link_to 'Back', subject_path(@subject, :anchor=>dom_id(@course)) %>
