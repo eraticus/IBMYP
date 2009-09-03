@@ -46,6 +46,14 @@ ActiveRecord::Schema.define(:version => 20090902182122) do
     t.integer "formative_task_id"
   end
 
+  create_table "indicators", :force => true do |t|
+    t.integer  "standard_id"
+    t.string   "label"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "learner_profiles", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -83,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20090902182122) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "course_id"
   end
 
   create_table "subjects", :force => true do |t|
@@ -147,16 +156,6 @@ ActiveRecord::Schema.define(:version => 20090902182122) do
     t.string   "password_salt"
     t.string   "persistence_token"
     t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "yardsticks", :force => true do |t|
-    t.integer  "standard_id"
-    t.string   "label"
-    t.string   "description"
-    t.boolean  "middle"
-    t.boolean  "high"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

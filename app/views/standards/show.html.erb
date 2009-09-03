@@ -13,6 +13,26 @@
   <%=h @standard.description %>
 </p>
 
+<div class="section">
+	<div class="title">Indicators</div>
+	<table>
+		<%for indicator in @standard.indicators%>
+		<tr>
+			<td><strong><%= indicator.label %>: </strong><%= indicator.description %></td>
+			<td>
+				<%= link_to("Show", indicator)%> |
+				<%= link_to("Edit", edit_indicator_path(indicator))%> |
+				<%= link_to "Delete", indicator, :confirm=>"Are you sure?", :method=>"delete" %>
+			</td>
+		</tr>
+		<%end%>
+	</table>
+	<div class="navigation">
+		<%=link_to("New Indicator", new_standard_indicator_path(@standard))%>
+	</div>
+</div>
+
+
 
 <%= link_to 'Edit', edit_course_standard_path(@course, @standard) %> |
 <%= link_to 'Back', subject_course_path(@course.subject, @course, :anchor=>dom_id(@standard)) %>

@@ -10,9 +10,9 @@ ActionController::Routing::Routes.draw do |map|
     criterion.resources :objectives # mostly for creation of new criterions
   end
 
-  map.resources :yardsticks # change name to indicators
+  map.resources :indicators # change name to indicators
 
-  map.resources :standards, :has_many=>:yardsticks
+  map.resources :standards, :has_many=>:indicators
 
   map.resources :subjects, :has_many=>[:courses, :criterions] do |subject|
     #subject.resource :criterions

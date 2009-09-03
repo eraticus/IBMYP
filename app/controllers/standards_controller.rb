@@ -16,8 +16,13 @@ class StandardsController < ApplicationController
   # GET /standards/1
   # GET /standards/1.xml
   def show # probably not used
-    @course = Course.find(params[:course_id])
-    @standard = @course.standards.find(params[:id])
+    if params[:course_id]
+      @course = Course.find(params[:course_id])
+      @standard = @course.standards.find(params[:id])
+    else
+      @standard = Standard.find(params[:id])
+      @course = @standard.course
+    end
 
     respond_to do |format|
       format.html # show.html.erb
