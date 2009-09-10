@@ -1,6 +1,8 @@
 class UnitPlanner < ActiveRecord::Base
   belongs_to :user # author of document
   belongs_to :subject
+  
+  belongs_to :course
 
   has_many :summative_tasks, :dependent=>:destroy
   has_many :formative_tasks, :dependent=>:destroy
@@ -9,7 +11,7 @@ class UnitPlanner < ActiveRecord::Base
   validates_presence_of :teachers, :message => "please include at least one teacher"
 
   has_and_belongs_to_many :objectives, :include=>:criterion , :order => 'objectives.subcategory' #'criterions.category, objectives.subcategory'
-  #has and belongs to many criterions
+  has_and_belongs_to_many :standards, :order=>'label'
 
   #begin lifecycle methods
   after_save {|y| y.objectives.clear if y.subject_id_changed?}

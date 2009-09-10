@@ -12,5 +12,5 @@
   </p>
 <% end %>
 
-<%= link_to 'Show', subject_course_path(@subject, @course) %> |
-<%= link_to 'Back', subject_path(@subject) %>
+<%= link_to 'Show', @course %> |
+<%= link_to 'Back', subject_path(@course.subject) %>

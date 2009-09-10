@@ -16,8 +16,7 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.xml
   def show
-    @subject = Subject.find(params[:subject_id])
-    @course = @subject.courses.find(params[:id])
+    @course = Course.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -39,8 +38,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/1/edit
   def edit
-    @subject = Subject.find(params[:subject_id])
-    @course = @subject.courses.find(params[:id])
+    @course = Course.find(params[:id])
   end
 
   # POST /courses
@@ -64,13 +62,12 @@ class CoursesController < ApplicationController
   # PUT /courses/1
   # PUT /courses/1.xml
   def update
-    @subject = Subject.find(params[:subject_id])
-    @course = @subject.courses.find(params[:id])
+    @course = Course.find(params[:id])
 
     respond_to do |format|
       if @course.update_attributes(params[:course])
         flash[:notice] = 'Course was successfully updated.'
-        format.html { redirect_to(subject_url(@subject, :anchor=>(dom_id @course))) }
+        format.html { redirect_to(subject_url(@course.subject, :anchor=>(dom_id @course))) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

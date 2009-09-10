@@ -5,13 +5,13 @@
 	<%=h @subject.description %>
 </p>
 
-<div class="section">
+<div class="section" id="criterions">
 	<strong>Criterions</strong>
 	<table>
 		<%for criterion in @subject.criterions%>
 		<tr>
-			<td><strong><%= criterion.category %>: </strong><%= criterion.title %></td>
-			<td>
+			<td><strong><%= criterion.category %>: </strong><em><%= criterion.title %></em></td>
+			<td style="width:200px;">
 				<%= link_to("View", criterion_path(criterion))%> |
 				<%= link_to("Edit", edit_subject_criterion_path(@subject, criterion))%> |
 				<%= link_to "Delete", criterion, :confirm=>"Are you sure?", :method=>"delete" %>
@@ -29,8 +29,8 @@
 	<table>
 		<%for course in @subject.courses%>
 		<tr id="<%= dom_id course %>">
-			<td><strong><%=course.name%></strong></td>
-			<td>
+			<td><em><%=course.name%></em></td>
+			<td style="width:200px;">
 				<%= link_to("View", subject_course_path(@subject, course))%> |
 				<%= link_to("Edit", edit_subject_course_path(@subject, course))%> |
 				<%= link_to "Delete", course, :confirm=>"Are you sure?", :method=>"delete" %>
@@ -40,6 +40,25 @@
 	</table>
 	<div class="navigation">
 	<%= link_to("New Course", new_subject_course_path(@subject))%>
+	</div>
+</div>
+
+<div class="section" id="standards">
+	<strong>Standards</strong>
+	<table>
+		<%for standard in @subject.standards%>
+		<tr id="<%= dom_id standard %>">
+			<td><strong><%=standard.label%>:</strong> <em><%=standard.name%></em></td>
+			<td style="width:200px;">
+				<%= link_to("View", standard_path(standard))%> |
+				<%= link_to("Edit", edit_standard_path(standard))%> |
+				<%= link_to "Delete", standard, :confirm=>"Are you sure?", :method=>"delete" %>
+			</td>
+		</tr>
+		<%end%>
+	</table>
+	<div class="navigation">
+	<%= link_to("New Standard", new_subject_standard_path(@subject))%>
 	</div>
 </div>
 

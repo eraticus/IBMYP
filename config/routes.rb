@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :courses, :has_many=>:standards
+  map.resources :courses
 
   map.resources :learner_profiles
 
@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :standards, :has_many=>:indicators
 
-  map.resources :subjects, :has_many=>[:courses, :criterions] do |subject|
+  map.resources :subjects, :has_many=>[:courses, :criterions, :standards] do |subject|
     #subject.resource :criterions
  #   subject.resource :standards
   end

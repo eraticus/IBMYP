@@ -18,16 +18,15 @@
 	<div class="section">
 		<div class="title">Unit Content</div>
 
-		<b>Concepts:</b>
-		<div>
-			<%=form.text_field :unit_content_concepts, :class=>"text_field" %>
-		</div>
-
-		<b>Skills:</b>
-		<div>
-			<%=form.text_field :unit_content_skills, :class=>"text_field" %>
-		</div>
-
+		<table>
+			<tr style="font-weight:bold">
+				<td>Concepts</td><td>Skills</td>
+			</tr>
+			<tr>
+				<td><%=form.text_field :unit_content_concepts, :class=>"text_field" %></td>
+				<td><%=form.text_field :unit_content_skills, :class=>"text_field" %></td>
+			</tr>
+		</table>
 	</div>
 
 	<div class="section">
@@ -90,7 +89,7 @@
 	
 	<div>
   <%= form.submit 'Update Backward Planner'%>
-<%= link_to('Cancel', unit_planner_path(@summative_task.unit_planner, :anchor=>"backward_planner")) %>
+<%= link_to('Cancel', unit_planner_path(@unit_planner, :anchor=>"backward_planner")) %>
   </div>
   
 	

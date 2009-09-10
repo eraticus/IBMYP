@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090902182122) do
+ActiveRecord::Schema.define(:version => 20090909223221) do
 
   create_table "courses", :force => true do |t|
     t.integer  "subject_id"
@@ -91,7 +91,13 @@ ActiveRecord::Schema.define(:version => 20090902182122) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "course_id"
+  end
+
+  create_table "standards_unit_planners", :force => true do |t|
+    t.integer  "standard_id"
+    t.integer  "unit_planner_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "subjects", :force => true do |t|
@@ -113,7 +119,6 @@ ActiveRecord::Schema.define(:version => 20090902182122) do
   create_table "unit_planners", :force => true do |t|
     t.integer  "subject_id"
     t.string   "subject_area"
-    t.string   "course"
     t.string   "blooms_level"
     t.string   "unit_topic"
     t.string   "unit_title"
@@ -130,7 +135,6 @@ ActiveRecord::Schema.define(:version => 20090902182122) do
     t.string   "learning_readiness"
     t.string   "unit_content_concepts"
     t.string   "unit_content_skills"
-    t.string   "standards"
     t.string   "intercultural_awareness"
     t.string   "learner_profile"
     t.string   "learning_support"
@@ -141,6 +145,8 @@ ActiveRecord::Schema.define(:version => 20090902182122) do
     t.string   "resources"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "grade"
+    t.integer  "course_id"
   end
 
   create_table "user_sessions", :force => true do |t|

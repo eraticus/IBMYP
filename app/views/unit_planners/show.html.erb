@@ -45,6 +45,12 @@
 		<b>Year:</b>
 		<%=h @unit_planner.year %>
 	</div>
+	
+	<div>
+		<b>Grade:</b>
+		<%=h @unit_planner.grade %>
+	</div>
+	
 	<div class="navigation">
 		<%= link_to 'Edit Identification', edit_identification_unit_planner_path(@unit_planner) %>
 	</div>
@@ -138,7 +144,9 @@
 	<div class="section">
 		<div class="title">Standards</div>
 		<div style="height:36px">
-			<%=h @unit_planner.standards %>
+			
+<%= render :partial => 'standards/index', :collection=>@unit_planner.standards%>
+			
 			<div class="navigation"><%= link_to "Edit Standards" %></div>
 		</div>
 
