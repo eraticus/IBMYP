@@ -1,0 +1,10 @@
+<%
+unless defined?(courses)
+	courses = @unit_planner.subject.courses		
+end
+%>
+
+<%=collection_select(:unit_planner, :course, @unit_planner.subject.courses.all, :id, :name, {:prompt => true})%>
+
+<%= observe_field :unit_planner_subject_id, :with=>"subject_id", :url => { :action => :update_course_selection } %>
+

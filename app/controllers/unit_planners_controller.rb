@@ -1,4 +1,17 @@
 class UnitPlannersController < ApplicationController
+  
+  def update_course_selection
+    
+    subject = Subject.find(params[:subject_id])
+    courses = subject.courses
+    
+    render :update do |page|
+      page.replace_html  :partial => 'course', :locals => {:courses=>courses}
+      #page.visual_effect :highlight, 'user_list'
+      #page.replace_html 'course', :text=>"Subject changed to #{Subject.find(params[:subject_id]).name}"
+    end
+    
+  end
 
   # GET /unit_planners
   # GET /unit_planners.xml

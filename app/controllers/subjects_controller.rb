@@ -5,7 +5,7 @@ class SubjectsController < ApplicationController
   # GET /subjects
   # GET /subjects.xml
   def index
-    @subjects = Subject.all
+    @subjects = Subject.all(:order=>:name)
 
     respond_to do |format|
       format.html # index.html.erb
