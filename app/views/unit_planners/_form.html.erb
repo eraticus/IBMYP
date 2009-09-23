@@ -8,7 +8,7 @@
 		<%=collection_select(:unit_planner, :subject_id, Subject.all, :id, :name, {:prompt => true})%>
 		
 		<div id="course">
-<%= render :partial => 'course', :locals=>{:form=>form} %>
+<%= render :partial => 'course', :locals=>{:courses=>@unit_planner.subject.courses} %>
 		</div>
 		
 		</td>

@@ -2,12 +2,14 @@ class UnitPlannersController < ApplicationController
   
   def update_course_selection
     
-    subject = Subject.find(params[:subject_id])
-    courses = subject.courses
+    @subject = Subject.find(params[:subject_id])
+    @courses = @subject.courses
     
     render :update do |page|
-      page.replace_html  :partial => 'course', :locals => {:courses=>courses}
-      #page.visual_effect :highlight, 'user_list'
+      page.replace_html 'course', :partial => 'course', :locals=>{:courses=>@courses}
+      #   page.replace_html  'user_list', :partial => 'user', :collection => @users
+      # page.visual_effect :highlight, 'user_list'
+       #page.visual_effect :highlight, 'course'
       #page.replace_html 'course', :text=>"Subject changed to #{Subject.find(params[:subject_id]).name}"
     end
     
