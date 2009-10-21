@@ -39,8 +39,8 @@ class StandardsController < ApplicationController
 
   # GET /standards/1/edit
   def edit
-    @subject = Subject.find(params[:subject_id])
-    @standard = @subject.standards.find(params[:id])
+    @standard = Standard.find(params[:id])
+    @subject = @standard.subject
   end
 
   # POST /standards
@@ -85,7 +85,7 @@ class StandardsController < ApplicationController
     @standard.destroy
 
     respond_to do |format|
-      format.html { redirect_to(subject_url(@standard.subject, :anchor=>'subjects')) }
+      format.html { redirect_to(subject_url(@standard.subject, :anchor=>'standards')) }
       format.xml  { head :ok }
     end
   end

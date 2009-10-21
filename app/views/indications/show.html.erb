@@ -1,0 +1,15 @@
+<%=link_to "#{@indicator.standard.name}", standard_path(@indicator.standard)%>
+
+<p>
+  <b>Label:</b>
+  <%=h @indicator.label %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @indicator.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_indicator_path(@indicator) %> |
+<%= link_to 'Back', standard_path(@indicator.standard, :anchor=>'indicators') %>

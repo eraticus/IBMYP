@@ -1,6 +1,6 @@
 <h1>Editing Standard</h1>
 
-<% form_for([@course, @standard]) do |f| %>
+<% form_for(@standard) do |f| %>
   <%= f.error_messages %>
 
   <p>
@@ -9,16 +9,11 @@
   </p>
   <p>
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%= f.text_area :name %>
   </p>
   <p>
     <%= f.submit 'Update' %>
   </p>
 <% end %>
 
-<%= link_to 'Show', [@course, @standard] %> |
-<%= link_to 'Cancel', [@course.subject, @course] %>
+<%= link_to 'Cancel', @standard %>

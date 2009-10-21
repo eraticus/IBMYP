@@ -46,6 +46,7 @@ class UnitPlannersController < ApplicationController
   # GET /unit_planners/new.xml
   def new
     @unit_planner = UnitPlanner.new
+    @unit_planner.subject = Subject.first (:order=>:name)
 
     respond_to do |format|
       format.html # new.html.erb

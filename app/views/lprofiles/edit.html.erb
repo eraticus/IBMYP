@@ -1,0 +1,17 @@
+<h1>Select Learning Profiles</h1>
+
+<% form_for(@unit_planner) do |f| %>
+  <%= f.error_messages %>
+
+	<%for learner_profile in LearnerProfile.all(:order=>:name)%>
+
+	<div>
+	<%=check_box_tag "unit_planner[learner_profile_ids][]", learner_profile.id, @unit_planner.learner_profile_ids.include?(learner_profile.id)%><%="#{learner_profile.name}"%> <%=text_field_tag :yyy%>
+	</div>
+	<%end%>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', (@unit_planner) %>

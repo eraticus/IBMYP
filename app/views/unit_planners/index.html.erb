@@ -15,7 +15,7 @@
 <% @unit_planners.each do |unit_planner| %>
   <tr>
     <td><%=h unit_planner.subject.name %></td>
-    <td><%=h unit_planner.course %></td>
+    <td><%=h unit_planner.course.name if unit_planner.course %></td>
     <td><%=h blooms_text(unit_planner.blooms_level) %></td>
     <td><%=h unit_planner.unit_topic %></td>
     <td><%=h unit_planner.unit_title %></td>

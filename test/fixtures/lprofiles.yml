@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  learner_profile_id: 1
+  unit_planner: 1
+
+two:
+  learner_profile_id: 1
+  unit_planner: 1

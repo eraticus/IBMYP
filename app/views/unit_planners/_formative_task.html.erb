@@ -6,9 +6,9 @@
 
 <td>
 
-<%for o in formative_task.objectives.all(:include=>:criterion)%>
-<%="<b>#{o.criterion.category}#{o.subcategory}:</b> #{o.description}"%>
-<br />
+<%formative_task_objectives=formative_task.objectives.all(:include=>:criterion)%>
+<%for o in formative_task_objectives%>
+<%="<b>#{o.criterion.category}#{o.subcategory}</b>"%><%=", " unless o==formative_task_objectives.last%>
 <%end%>
 
 </td>

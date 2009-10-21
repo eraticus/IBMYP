@@ -16,6 +16,7 @@ class IndicatorsController < ApplicationController
   # GET /indicators/1.xml
   def show
     @indicator = Indicator.find(params[:id])
+    @standard = @indicator.standard
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,8 +27,10 @@ class IndicatorsController < ApplicationController
   # GET /indicators/new
   # GET /indicators/new.xml
   def new
+    # I don't know if this is technically necessary, but is logically
+    # what we are doing here. Simplify later if possible
     @standard = Standard.find(params[:standard_id])
-    @indicator = Indicator.new
+    @indicator = @standard.indicators.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,8 +40,7 @@ class IndicatorsController < ApplicationController
 
   # GET /indicators/1/edit
   def edit
-    @standard = Standard.find(params[:standard_id])
-    @indicator = Standard.indicators.find(params[:id])
+    @indicator = Indicator.find(params[:id])
   end
 
   # POST /indicators
@@ -50,7 +52,7 @@ class IndicatorsController < ApplicationController
     respond_to do |format|
       if @indicator.save
         flash[:notice] = 'indicator was successfully created.'
-        format.html { redirect_to([@standard.course, @standard]) }
+        format.html { redirect_to(@standard, :anchor=>'indicators') }
         format.xml  { render :xml => @indicator, :status => :created, :location => @indicator }
       else
         format.html { render :action => "new" }
@@ -62,13 +64,12 @@ class IndicatorsController < ApplicationController
   # PUT /indicators/1
   # PUT /indicators/1.xml
   def update
-    @standard = Standard.find(params[:standard_id])
-    @indicator = @standard.indicators.find(params[:id])
+    @indicator = Indicator.find(params[:id])
 
     respond_to do |format|
       if @indicator.update_attributes(params[:indicator])
         flash[:notice] = 'indicator was successfully updated.'
-        format.html { redirect_to(@indicator) }
+        format.html { redirect_to(standard_path(@indicator.standard, :anchor=>dom_id(@indicator))) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

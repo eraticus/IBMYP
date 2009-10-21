@@ -4,22 +4,20 @@
 <table>
 	<tr><td><label>Subject Area / Course</label></td>
 		<td>
-		
-		<%=collection_select(:unit_planner, :subject_id, Subject.all, :id, :name, {:prompt => true})%>
-		
-		<div id="course">
-<%= render :partial => 'course', :locals=>{:courses=>@unit_planner.subject.courses} %>
+			<%=collection_select(:unit_planner, :subject_id, Subject.all(:order=>:name), :id, :name, {:prompt => false})%>
+			<div id="course">
+			<%= render :partial => 'course', :locals=>{:courses=>@unit_planner.subject.courses} %>
 		</div>
-		
-		</td>
 
-		<td><label>MYP Level:</label><%= form.select :blooms_level, [1,2,3,4,5,6] %></td></tr>
+	</td>
+
+	<td><label>MYP Level:</label><%= form.select :blooms_level, [1,2,3,4,5,6] %></td></tr>
 
 		<tr><td><label>Unit Topic</label></td><td colspan="2"><%= form.text_field :unit_topic, :style=>"width:440px;" %></td></tr>
 		<tr><td><label>Unit Title</label></td><td colspan="2"><%= form.text_field :unit_title, :style=>"width:440px;" %></td></tr>
 		<tr><td><label>Teacher(s)</label></td><td colspan="2"><%= form.text_field :teachers, :style=>"width:440px;" %></td></tr>
-		<tr><td><label>Time frame and duration</label></td><td><%= form.text_field :time_frame %></td><td><label>Year:</label><%= form.select :year, [["2009-2010","2009"], ["2010-2011","2010"]] %></td></tr>
-		<tr><td colspan="3"><label>Grade:</label><%= form.select :grade, [5,6,7,8,9,10,11,12] %></td></tr>
+		<tr><td><label>Unit order</label><%=form.select :unit_order, (1..20)%></td><td><label># of weeks</label><%= form.select :num_weeks, (1..20) %></td><td><label>Year:</label><%= form.select :year, [["2009-2010","2009"], ["2010-2011","2010"]] %></td></tr>
+		
 	</table>
 
 	<h1>Stage 1: Unit Outcome Visioning</h1>
@@ -31,7 +29,7 @@
 			(How will this area of interaction provide a focused context for this unit?)
 		</div>
 		<div style="height:100px;margin:5px;width:100%;border:1px solid #000000">
-		<%= form.select :area_of_interaction, ["Approaches to Learning", "Environments", "Heath and Social Education", "Human Ingenuity", "Community and Service"] %>
+		<%= form.select :area_of_interaction, ["Approaches to Learning", "Environments", "Heath and Social Education", "Human Ingenuity", "Community and Service"].sort %>
 	</div>
 </div>
 
@@ -66,9 +64,4 @@
 
 </div>
 
-
-<p>
-	<%= form.label :type_of_task %><br />
-	<%= form.text_field :type_of_task %>
-</p>
 

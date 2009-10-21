@@ -8,10 +8,27 @@
   <%=h @standard.name %>
 </p>
 
-<p>
-  <b>Description:</b>
-  <%=h @standard.description %>
-</p>
+<div class="section" id="indicators">
+	<strong>Indicators</strong>
+	<table>
+		<%for indicator in @standard.indicators%>
+		<tr id=<%=dom_id indicator%>>
+			<td><strong><%= indicator.label %>: </strong><em><%= indicator.description %></em></td>
+			<td style="width:200px;">
+				<%#= link_to("View", indicator_path(indicator))%>
+				<%= link_to("Edit", edit_indicator_path(indicator))%> |
+				<%= link_to "Delete", indicator, :confirm=>"Are you sure?", :method=>"delete" %>
+			</td>
+		</tr>
+		<%end%>
+	</table>
+	<div class="navigation">
+	<%= link_to("New Indicator", new_standard_indicator_path(@standard))%>
+	</div>
+</div>
+
+
+
 
 <%= link_to 'Edit', edit_standard_path(@standard) %> |
 <%= link_to 'Back', subject_path(@standard.subject, :anchor=>dom_id(@standard)) %>

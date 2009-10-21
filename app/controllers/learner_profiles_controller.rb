@@ -1,8 +1,11 @@
 class LearnerProfilesController < ApplicationController
+  
+  layout "admin"
+  
   # GET /learner_profiles
   # GET /learner_profiles.xml
   def index
-    @learner_profiles = LearnerProfile.all
+    @learner_profiles = LearnerProfile.all(:order=>:name)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -45,7 +48,7 @@ class LearnerProfilesController < ApplicationController
     respond_to do |format|
       if @learner_profile.save
         flash[:notice] = 'LearnerProfile was successfully created.'
-        format.html { redirect_to(@learner_profile) }
+        format.html { redirect_to(learner_profiles_path, :anchor=>dom_id(@learner_profile)) }
         format.xml  { render :xml => @learner_profile, :status => :created, :location => @learner_profile }
       else
         format.html { render :action => "new" }
@@ -62,7 +65,7 @@ class LearnerProfilesController < ApplicationController
     respond_to do |format|
       if @learner_profile.update_attributes(params[:learner_profile])
         flash[:notice] = 'LearnerProfile was successfully updated.'
-        format.html { redirect_to(@learner_profile) }
+        format.html { redirect_to(learner_profiles_path, :anchor=>dom_id(@learner_profile)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -76,6 +79,7 @@ class LearnerProfilesController < ApplicationController
   def destroy
     @learner_profile = LearnerProfile.find(params[:id])
     @learner_profile.destroy
+    flash[:notice] = "Learner Profile \'#{@learner_profile.name}\' was successfully deleted."
 
     respond_to do |format|
       format.html { redirect_to(learner_profiles_url) }

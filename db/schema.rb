@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090909223221) do
+ActiveRecord::Schema.define(:version => 20091021013814) do
 
   create_table "courses", :force => true do |t|
     t.integer  "subject_id"
@@ -46,6 +46,13 @@ ActiveRecord::Schema.define(:version => 20090909223221) do
     t.integer "formative_task_id"
   end
 
+  create_table "indications", :force => true do |t|
+    t.integer  "indicator_id"
+    t.integer  "unit_planner_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "indicators", :force => true do |t|
     t.integer  "standard_id"
     t.string   "label"
@@ -54,7 +61,26 @@ ActiveRecord::Schema.define(:version => 20090909223221) do
     t.datetime "updated_at"
   end
 
+  create_table "intelligence", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "learner_profiles", :force => true do |t|
+    t.integer  "unit_planner_id"
+    t.string   "name"
+    t.boolean  "selected"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "learning_style", :force => true do |t|
+    t.integer  "unit_planner_id"
+    t.integer  "intelligence_id"
+    t.boolean  "selected"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -63,6 +89,14 @@ ActiveRecord::Schema.define(:version => 20090909223221) do
     t.string   "style"
     t.string   "explanation"
     t.integer  "unit_planner_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "lprofiles", :force => true do |t|
+    t.integer  "learner_profile_id"
+    t.integer  "unit_planner_id"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -123,7 +157,6 @@ ActiveRecord::Schema.define(:version => 20090909223221) do
     t.string   "unit_topic"
     t.string   "unit_title"
     t.string   "teachers"
-    t.string   "time_frame"
     t.string   "year"
     t.string   "area_of_interaction"
     t.string   "significant_concept"
@@ -132,11 +165,7 @@ ActiveRecord::Schema.define(:version => 20090909223221) do
     t.string   "myp_criteria"
     t.string   "type_of_task"
     t.integer  "user_id"
-    t.string   "learning_readiness"
-    t.string   "unit_content_concepts"
-    t.string   "unit_content_skills"
     t.string   "intercultural_awareness"
-    t.string   "learner_profile"
     t.string   "learning_support"
     t.string   "teaching_strategies"
     t.string   "approaches_skill"
@@ -147,6 +176,13 @@ ActiveRecord::Schema.define(:version => 20090909223221) do
     t.datetime "updated_at"
     t.integer  "grade"
     t.integer  "course_id"
+    t.integer  "unit_order"
+    t.integer  "num_weeks"
+    t.text     "know"
+    t.text     "understand"
+    t.text     "perform"
+    t.text     "prior_knowledge"
+    t.text     "diagnostic_assessments"
   end
 
   create_table "user_sessions", :force => true do |t|

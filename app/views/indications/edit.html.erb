@@ -1,0 +1,22 @@
+<h1>Select Indicators</h1>
+
+<% form_for(@unit_planner) do |f| %>
+  <%= f.error_messages %>
+
+<%for standard in @unit_planner.subject.standards%>
+	<div style="font-weight:bold; padding:5px; margin-left:10px">
+	<%="#{standard.label}. #{standard.name}"%>
+	<%for indicator in standard.indicators%>
+	<div style="font-weight:normal;margin-left:10px">
+	<%=check_box_tag 'unit_planner[indicator_ids][]', indicator.id, @unit_planner.indicators.include?(indicator) %><span style="font-weight:bold"><%="#{standard.label}.#{indicator.label}.</span> #{indicator.description}"%>
+	</div>
+	<%end%>
+	</div>
+<%end%>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', unit_planner_path(@unit_planner, :anchor=>"indicators") %>

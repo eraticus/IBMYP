@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :lprofiles
+
   map.resources :courses
 
   map.resources :learner_profiles
@@ -43,6 +45,8 @@ ActionController::Routing::Routes.draw do |map|
     unit_planner.resources :formative_tasks
     unit_planner.resources :learning_styles
     unit_planner.resources :standards
+    unit_planner.resources :indications
+    unit_planner.resources :lprofiles
   end
   
   map.root :unit_planners  
