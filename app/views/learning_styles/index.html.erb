@@ -2,14 +2,16 @@
 
 <table>
   <tr>
-    <th>Style</th>
-    <th>Explanation</th>
+    <th>Description</th>
+    <th>Intelligence</th>
+    <th>Unit planner</th>
   </tr>
 
 <% @learning_styles.each do |learning_style| %>
   <tr>
-    <td><%=h learning_style.style %></td>
-    <td><%=h learning_style.explanation %></td>
+    <td><%=h learning_style.description %></td>
+    <td><%=h learning_style.intelligence_id %></td>
+    <td><%=h learning_style.unit_planner_id %></td>
     <td><%= link_to 'Show', learning_style %></td>
     <td><%= link_to 'Edit', edit_learning_style_path(learning_style) %></td>
     <td><%= link_to 'Destroy', learning_style, :confirm => 'Are you sure?', :method => :delete %></td>

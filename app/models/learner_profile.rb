@@ -1,3 +1,5 @@
+#TODO: change name to "Trait"
+
 class LearnerProfile < ActiveRecord::Base
   #belongs_to :unit_planner
   has_many :lprofiles

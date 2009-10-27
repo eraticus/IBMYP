@@ -46,7 +46,7 @@ class UnitPlannersController < ApplicationController
   # GET /unit_planners/new.xml
   def new
     @unit_planner = UnitPlanner.new
-    @unit_planner.subject = Subject.first (:order=>:name)
+    @unit_planner.subject = Subject.first(:order=>:name)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -172,11 +172,55 @@ class UnitPlannersController < ApplicationController
     update
   end
   
+  def update_learning_styles
+    @unit_planner = UnitPlanner.find(params[:id])
+    
+    params[:unit_planner][:intelligences] ||= []
+
+    respond_to do |format|
+      if @unit_planner.update_attributes(params[:unit_planner])
+
+        flash[:notice] = 'UnitPlanner was successfully updated.'
+        format.html do
+            redirect_to(unit_planner_url(@unit_planner, :anchor=>"learning_styles"))
+        end
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @unit_planner.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
+  def update_lprofiles
+    @unit_planner = UnitPlanner.find(params[:id])
+    
+    #if the learner_profiles checkbox array is empty,
+    # interpret as having all values unchecked. Clear
+    # learner_profiles collection in this case. 
+    params[:unit_planner][:learner_profiles] ||= []
+
+    respond_to do |format|
+      if @unit_planner.update_attributes(params[:unit_planner])
+
+        flash[:notice] = 'UnitPlanner was successfully updated.'
+        format.html do
+          redirect_to(unit_planner_url(@unit_planner, :anchor=>'lprofiles'))
+        end
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @unit_planner.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
+  
   # PUT /unit_planners/1
   # PUT /unit_planners/1.xml
   def update
     @unit_planner = UnitPlanner.find(params[:id])
-
+    
     respond_to do |format|
       if @unit_planner.update_attributes(params[:unit_planner])
 

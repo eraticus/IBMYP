@@ -201,30 +201,43 @@
 
 		</div>
 		
-		<%# Need to make this a partial%>
-		
+		<div class="section_1">
+			<div class="title">Learning Process</div>
+			
+		<%# Need to make this a partial%>	
 		<div id="lprofiles" class="section">
-			<div class="title">Learner Profiles</div>
+			<div class="title">Learner Profile</div>
 			<div style="min-height:36px">
 
 				<%for lprofile in @unit_planner.lprofiles%>
+				<div>
+					<b><%=lprofile.learner_profile.name%></b><%=": #{lprofile.description}" unless lprofile.description.blank?%>
+				</div>
 				<%end%>
 
 			</div>
 				<div class="navigation">
-					<%= link_to "Select Learner Profiles", edit_unit_planner_lprofile_path(@unit_planner)%>
+					<%= link_to "Select Traits", edit_unit_planner_lprofile_path(@unit_planner)%>
 				</div>
 
 			</div>
-
-		</div>
-
+		<%# Bottom of LProfiles%>
+		
 		<div class="section">
-			<div id="learning_styles" class="title">Learning Styles</div>
-			<%=render :partial=>'learning_styles/learning_styles', :object=>@unit_planner.learning_styles%>
-			<div class="navigation"><%= link_to "New Learning Style", new_unit_planner_learning_style_path(@unit_planner) %></div>
+			<div id="learning_styles" class="title">Learning Style</div>
+			<div style="font-style:italic">
+				How will different learning styles or multiple intelligences be supported?
+			</div>
+			<%for learning_style in @unit_planner.learning_styles%>
+				<div>
+					<b><%= learning_style.intelligence.name %></b><%= ": #{learning_style.description}" unless learning_style.description.blank?%>
+				</div>
+			<%end%>
+			
+			<div class="navigation">
+				<%= link_to "Select Intelligences", edit_unit_planner_learning_style_path(@unit_planner) %></div>
+			</div>
 		</div>
-
 		<div class="section">
 			<div class="title">Teaching Strategies to Support Learning</div>
 
@@ -235,14 +248,15 @@
 
 		<div class="section">
 			<div class="title">Approaches to Learning Skills</div>
+			<% Skill.all.each do |skill| %>
+			<div style='font-weight:bold'>
+				<%=h skill.name%>
+				</div>
+			<% end %>
 
-			<b>Skill Category:</b>
-			<div style="height:36px">
-				<%=h @unit_planner.approaches_skill %>
-			</div>
-			<b>Strategies:</b>
-			<div style="height:36px">
-				<%=h @unit_planner.approaches_strategy %>
+
+			<div class="navigation">
+				<%= link_to "Select Approaches", edit_unit_planner_approach_path(@unit_planner) %></div>
 			</div>
 		</div>
 

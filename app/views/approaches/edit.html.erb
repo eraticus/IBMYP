@@ -1,0 +1,23 @@
+<h1>Selecting Approaches</h1>
+
+<% form_for(@unit_planner) do |f| %>
+<%= f.error_messages %>
+
+<% @skills.each do |skill| %>
+<div style="margin:10px">
+	<div style="font-weight:bold"><%=h "#{skill.label}. #{skill.name}" %></div>
+	<%skill.strategies.all(:order=>:label).each do |strategy|%>
+	<div>
+		<%=check_box_tag "unit_planner[strategy_ids][]", strategy.id, @unit_planner.strategies.include?(strategy) %>
+		<span style="font-style:italic"><%=h strategy.description%></span>
+	</div>
+	<% end %>
+</div>
+<% end %>
+
+<%= f.submit 'Update' %>
+</p>
+<% end %>
+
+<%= link_to 'Show', @approach %> |
+<%= link_to 'Back', approaches_path %>

@@ -1,13 +1,19 @@
-<h1>Editing learning_style</h1>
+<h1>Select Intelligences</h1>
 
-<% form_for(@learning_style) do |f| %>
-<%= f.error_messages %>
+<% form_for(@unit_planner, :url=>update_learning_styles_unit_planner_path(@unit_planner)) do |f| %>
+  <%= f.error_messages %>
 
-<%= render :partial => 'form', :object=>f %>
+	<%for i in Intelligence.all(:order=>:name)%>
+	<div>
+		<div style="margin:5px">
+			<%=check_box_tag 'unit_planner[intelligence_ids][]', i.id, @unit_planner.intelligences.include?(i) %><%=i.name%>
+			<%=text_field_tag "unit_planner[learning_style_descriptions][#{i.id}]"%>
+		</div>
+		</div>
+	<%end%>
 
-<p>
-	<%= f.submit 'Update' %>
-</p>
+    <%= f.submit 'Update' %>
+  </p>
 <% end %>
 
-<%= link_to 'back', @learning_style %>
+<%= link_to 'Back', unit_planner_path(@unit_planner, :anchor=>'learning_styles') %>

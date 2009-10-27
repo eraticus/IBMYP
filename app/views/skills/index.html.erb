@@ -1,0 +1,25 @@
+<h1>Listing skills</h1>
+
+
+<% @skills.each do |skill| %>
+  <div style="margin:10px" id="<%= dom_id skill %>">
+    <span style="font-weight:bold"><%=h "#{skill.label}. #{skill.name}" %></span>
+    <span><%= link_to 'Edit', edit_skill_path(skill) %></span>
+    <span><%= link_to 'Destroy', skill, :confirm => 'Are you sure?', :method => :delete %></span>
+<div style="margin:0px 15px">
+	<% skill.strategies.all(:order=>:label).each do |strategy| %>
+	<div id="<%= dom_id strategy %>">
+		<span style="font-style:italic"><%= h "#{strategy.label}. #{strategy.description}" %></span>
+	    <span><%= link_to 'Edit', edit_strategy_path(strategy) %></span>
+	    <span><%= link_to 'Destroy', strategy, :confirm => 'Are you sure?', :method => :delete %></span>
+	    
+	</div>
+	<%end%>
+  <div style="margin:10px"><%=link_to("New Strategy", new_skill_strategy_path(skill)) %></div>
+</div>
+</div>
+<% end %>
+
+<br />
+
+<%= link_to 'New skill', new_skill_path %>

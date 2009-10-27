@@ -1,11 +1,8 @@
 class LearningStylesController < ApplicationController
-  
-  layout "admin"
-  
   # GET /learning_styles
   # GET /learning_styles.xml
   def index
-    @learning_styles = LearningStyle.all(:order=>:style)
+    @learning_styles = LearningStyle.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -37,13 +34,13 @@ class LearningStylesController < ApplicationController
 
   # GET /learning_styles/1/edit
   def edit
-    @learning_style = LearningStyle.find(params[:id])
+    @unit_planner = UnitPlanner.find(params[:id])
   end
 
   # POST /learning_styles
   # POST /learning_styles.xml
   def create
-    @learning_style = LearningStyle.new(params[:id])
+    @learning_style = LearningStyle.new(params[:learning_style])
 
     respond_to do |format|
       if @learning_style.save
@@ -81,7 +78,7 @@ class LearningStylesController < ApplicationController
     @learning_style.destroy
 
     respond_to do |format|
-      format.html { redirect_to(@learning_style) }
+      format.html { redirect_to(learning_styles_url) }
       format.xml  { head :ok }
     end
   end

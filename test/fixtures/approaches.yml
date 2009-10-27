@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: 
+  unit_planner_id: 1
+  strategy_id: 1
+
+two:
+  name: 
+  unit_planner_id: 1
+  strategy_id: 1

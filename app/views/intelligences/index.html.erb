@@ -1,0 +1,19 @@
+<h1>Listing Intelligences</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% @intelligences.each do |intelligence| %>
+  <tr>
+    <td><%=h intelligence.name %></td>
+    <td><%= link_to 'Edit', edit_intelligence_path(intelligence) %></td>
+    <td><%= link_to 'Destroy', intelligence, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New intelligence', new_intelligence_path %>

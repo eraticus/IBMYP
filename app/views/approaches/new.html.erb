@@ -1,0 +1,23 @@
+<h1>New approach</h1>
+
+<% form_for(@approach) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :unit_planner_id %><br />
+    <%= f.text_field :unit_planner_id %>
+  </p>
+  <p>
+    <%= f.label :strategy_id %><br />
+    <%= f.text_field :strategy_id %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', approaches_path %>

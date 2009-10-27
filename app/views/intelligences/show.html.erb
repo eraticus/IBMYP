@@ -1,0 +1,13 @@
+<p>
+  <b>Name:</b>
+  <%=h @intelligence.name %>
+</p>
+
+<p>
+  <b>Learning style:</b>
+  <%=h @intelligence.learning_style_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_intelligence_path(@intelligence) %> |
+<%= link_to 'Back', intelligences_path %>

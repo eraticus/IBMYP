@@ -9,7 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091021013814) do
+ActiveRecord::Schema.define(:version => 20091026190406) do
+
+  create_table "approaches", :force => true do |t|
+    t.string   "name"
+    t.integer  "unit_planner_id"
+    t.integer  "strategy_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "courses", :force => true do |t|
     t.integer  "subject_id"
@@ -61,8 +69,9 @@ ActiveRecord::Schema.define(:version => 20091021013814) do
     t.datetime "updated_at"
   end
 
-  create_table "intelligence", :force => true do |t|
+  create_table "intelligences", :force => true do |t|
     t.string   "name"
+    t.integer  "learning_style_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -86,8 +95,8 @@ ActiveRecord::Schema.define(:version => 20091021013814) do
   end
 
   create_table "learning_styles", :force => true do |t|
-    t.string   "style"
-    t.string   "explanation"
+    t.string   "description"
+    t.integer  "intelligence_id"
     t.integer  "unit_planner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -118,6 +127,12 @@ ActiveRecord::Schema.define(:version => 20091021013814) do
     t.datetime "updated_at"
   end
 
+  create_table "skills", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "standards", :force => true do |t|
     t.integer  "subject_id"
     t.string   "label"
@@ -130,6 +145,13 @@ ActiveRecord::Schema.define(:version => 20091021013814) do
   create_table "standards_unit_planners", :force => true do |t|
     t.integer  "standard_id"
     t.integer  "unit_planner_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "strategies", :force => true do |t|
+    t.string   "description"
+    t.integer  "skill_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

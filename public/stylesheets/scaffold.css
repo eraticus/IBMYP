@@ -1,4 +1,6 @@
-body { background-color: #fff; color: #333; }
+body {
+	background-color: #fff; color: #333;
+}
 
 body {
 	font-family: verdana, arial, helvetica, sans-serif;
@@ -15,14 +17,27 @@ body {
 .section {
 	margin:5px;
 	padding:5px;
-	border:1px solid #AAAAAA
-
+	border:1px solid #AAAAAA;
 }
 
 .section .title {
+	padding: 0px 15px;
+	text-align: left;
 	font-weight:bold;
 	background-color:yellow;
-	border-bottom:1px solid #555;
+}
+
+.section_1 {
+	 border:2px solid #999;
+	padding:5px;
+	margin:20px 5px;
+	
+}
+
+.section_1 > .title {
+	font-weight:bold;
+	text-align: center;
+	background-color:yellow;
 }
 
 .navigation {
