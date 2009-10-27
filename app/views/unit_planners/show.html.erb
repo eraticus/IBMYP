@@ -1,84 +1,25 @@
-<div class="section clear">
-	<h2>Identification</h2>
 
-	<div>
-		<b>Author:</b>
-		<%=h @unit_planner.user.username if @unit_planner.user %>
-	</div>
 
-	<div>
-		<b>Subject area:</b>
-		<%=h @unit_planner.subject.name %>
-	</div>
 
-	<div>
-		<b>Course:</b>
-		<%=h @unit_planner.course.name if @unit_planner.course %>
-	</div>
 
-	<div>
-		<b>Blooms Level:</b>
-		<%=h blooms_text(@unit_planner.blooms_level) %>
-	</div>
-
-	<div>
-		<b>Unit topic:</b>
-		<%=h @unit_planner.unit_topic %>
-	</div>
-
-	<div>
-		<b>Unit title:</b>
-		<%=h @unit_planner.unit_title %>
-	</div>
-
-	<div>
-		<b>Teachers:</b>
-		<%=h @unit_planner.teachers %>
-	</div>
-
-	<div>
-		<b>Unit order:</b>
-		<%=h @unit_planner.unit_order %>
-	</div>
-
-	<div>
-		<b># of weeks:</b>
-		<%=h @unit_planner.num_weeks %>
-	</div>
-
-	<div>
-		<b>Year:</b>
-		<%=h @unit_planner.year %>
-	</div>
-
+<div class="section">
+	<div class="title">Identification</div>
+	
+	<%=render :partial=>"identification"%>
 	<div class="navigation">
 		<%= link_to 'Edit Identification', edit_identification_unit_planner_path(@unit_planner) %>
+	</div>
+	
+</div>
+
+<div class="section">
+	<%=render :partial=>"visioning"%>
+	<div class="navigation">
+		<%= link_to 'Edit Visioning', edit_identification_unit_planner_path(@unit_planner) %>
 	</div>
 </div>
 
 <div class="section">
-	<h2>Unit Outcome Visioning</h2>
-	<div class="section">
-		<div class="title">Vision</div>
-		<div>
-			<b>Area of Interaction:</b>
-			<%=h @unit_planner.area_of_interaction%>
-		</div>
-
-		<div>
-			<b>Significant Concepts:</b>
-			<%=h @unit_planner.significant_concept%>
-		</div>
-
-		<div>
-			<b>Unit Question:</b>
-			<%=h @unit_planner.unit_question%>
-		</div>
-		<div class="navigation">
-			<%= link_to 'Edit Vision', edit_vision_unit_planner_path(@unit_planner) %>
-		</div>
-	</div>
-
 
 	<div class="section" id="unit_objectives">
 		<div class="title">MYP Objectives:</div>

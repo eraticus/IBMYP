@@ -1,0 +1,23 @@
+
+
+
+<table>
+	<tr><td><label>Subject Area / Course</label></td>
+		<td>
+			<%= h @unit_planner.subject.name %>
+			<div id="course">
+			<%= h @unit_planner.course %>
+		</div>
+
+	</td>
+
+	<td><label>MYP Level:</label><%= h @unit_planner.blooms_level %></td></tr>
+
+		<tr><td><label>Unit Topic</label></td><td colspan="2"><%= h @unit_planner.unit_topic %></td></tr>
+		<tr><td><label>Unit Title</label></td><td colspan="2"><%= h @unit_planner.unit_title %></td></tr>
+		<tr><td><label>Teacher(s)</label></td><td colspan="2"><%= h @unit_planner.teachers %></td></tr>
+		<tr><td><label>Unit order: </label><%=h @unit_planner.unit_order %></td><td><label># of weeks: </label><%= h @unit_planner.num_weeks %></td><td><label>Year: </label><%= h @unit_planner.year %></td></tr>
+		
+</table>
+
+
