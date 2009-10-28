@@ -35,6 +35,8 @@ class UnitPlannersController < ApplicationController
   # GET /unit_planners/1.xml
   def show
     @unit_planner = UnitPlanner.find(params[:id])
+    
+    @skills = Skill.all(:include=>{:strategies=>:approaches}, :order=>"skills.label", :conditions=>["approaches.unit_planner_id=?", @unit_planner.id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -160,12 +162,12 @@ class UnitPlannersController < ApplicationController
     end
   end
   
-  def edit_vision
-    edit
+  def edit_visioning
+    @unit_planner = UnitPlanner.find(params[:id])
   end
   
   def edit_identification
-    edit
+    @unit_planner = UnitPlanner.find(params[:id])
   end
   
   def update_identification

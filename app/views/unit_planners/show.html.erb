@@ -15,7 +15,7 @@
 <div class="section">
 	<%=render :partial=>"visioning"%>
 	<div class="navigation">
-		<%= link_to 'Edit Visioning', edit_identification_unit_planner_path(@unit_planner) %>
+		<%= link_to 'Edit Visioning', edit_visioning_unit_planner_path(@unit_planner) %>
 	</div>
 </div>
 
@@ -49,8 +49,8 @@
 
 </div>
 
-<div class="section">
-	<h2>Summative and Formative Tasks</h2>
+<div class="section_1">
+	<div class="title">Summative and Formative Tasks</div>
 
 <!-- summative tasks -->
 <div class="section" id="summative_tasks">
@@ -70,6 +70,8 @@
 		<%=render :partial=>'formative_task', :collection=>@unit_planner.formative_tasks %>
 	</table>
 	<div class="navigation"><%=link_to 'New Formative Task', new_unit_planner_formative_task_path(@unit_planner)%></div>
+
+</div>
 
 </div>
 
@@ -165,9 +167,9 @@
 		<%# Bottom of LProfiles%>
 		
 		<div class="section">
-			<div id="learning_styles" class="title">Learning Style</div>
+			<div id="learning_styles" class="title">Learning Style Differentiation</div>
 			<div style="font-style:italic">
-				How will different learning styles or multiple intelligences be supported?
+				How will different learning styles be supported?
 			</div>
 			<%for learning_style in @unit_planner.learning_styles%>
 				<div>
@@ -176,7 +178,7 @@
 			<%end%>
 			
 			<div class="navigation">
-				<%= link_to "Select Intelligences", edit_unit_planner_learning_style_path(@unit_planner) %></div>
+				<%= link_to "Select Learning Styles", edit_unit_planner_learning_style_path(@unit_planner) %></div>
 			</div>
 		</div>
 		<div class="section">
@@ -189,10 +191,16 @@
 
 		<div class="section">
 			<div class="title">Approaches to Learning Skills</div>
-			<% Skill.all.each do |skill| %>
-			<div style='font-weight:bold'>
-				<%=h skill.name%>
+			
+			<% @skills.each do |skill| %>
+			<div style='margin:5px'>
+				<span style='font-weight:bold'><%=h "#{skill.label}. #{skill.name}"%></span>
+				<% Strategy.find_all_by_skill_id(skill.id, :order=>:label, :include=>:approaches, :conditions=>["approaches.unit_planner_id=?", @unit_planner.id]).each do |strategy| %>
+				<div style='margin:0px 15px'>
+					<%= h "#{strategy.label}. #{strategy.description}" if (@unit_planner.strategies.include? strategy) %>
 				</div>
+				<%end%>
+			</div>
 			<% end %>
 
 

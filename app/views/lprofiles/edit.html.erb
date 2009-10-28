@@ -10,7 +10,7 @@
 
 	<div>
 	<%=check_box_tag "unit_planner[learner_profile_ids][]", learner_profile.id, @unit_planner.learner_profile_ids.include?(learner_profile.id)%><%="#{learner_profile.name}"%> <%=text_field_tag "unit_planner[learner_profile_descriptions][#{learner_profile.id}]",
-	(@unit_planner.lprofiles.find_by_learner_profile_id(learner_profile.id).description if @unit_planner.lprofiles.find_by_learner_profile_id(learner_profile.id))%>
+	(@unit_planner.lprofiles.find_by_learner_profile_id(learner_profile.id).description if @unit_planner.lprofiles.find_by_learner_profile_id(learner_profile.id)),:size => 60%>
 	</div>
 	<%end%>
   <p>

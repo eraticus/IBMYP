@@ -7,7 +7,8 @@
 	<div>
 		<div style="margin:5px">
 			<%=check_box_tag 'unit_planner[intelligence_ids][]', i.id, @unit_planner.intelligences.include?(i) %><%=i.name%>
-			<%=text_field_tag "unit_planner[learning_style_descriptions][#{i.id}]"%>
+			<%=text_field_tag "unit_planner[learning_style_descriptions][#{i.id}]", @unit_planner.learning_styles.find_by_intelligence_id(i.id).description if @unit_planner.learning_styles.find_by_intelligence_id(i.id)
+			%>
 		</div>
 		</div>
 	<%end%>

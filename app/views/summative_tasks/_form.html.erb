@@ -1,40 +1,35 @@
 
 
-  <div style="margin:10px">
-  <table>
-  <tr class="tint"><td colspan="4"><label>Summative Assessment Task(s)</label></td><td><label>MYP Criteria</label></td><td><label>Blooms Level</label></td><td><label>Type of Task</label></td></tr>
-  <tr><td colspan="4">
-  
-    <%= form.text_field :description %>
-  
-  </td>
+<div style="margin:10px">
+	<table>
+		<tr class="tint"><td colspan="4"><label>Summative Assessment Task(s)</label></td><td><label>MYP Criteria</label></td><td><label>Blooms Level</label></td><td><label>Type of Task</label></td></tr>
+		<tr><td colspan="4">
 
-  <td>
+			<%= form.text_field :description %>
 
-  <%for oc in @unit_planner.criterions%>
-  <%=check_box_tag 'summative_task[criterion_ids][]', oc.id, @summative_task.criterions.include?(oc)%><%="<span style=\"font-weight:bold\">#{oc.category}:</span> #{oc.title}"%>
-  <br />
-  <%end%>
+		</td>
 
-  </td>
+		<td>
 
-  <td>
+			<%for oc in @unit_planner.criterions%>
+			<%=check_box_tag 'summative_task[criterion_ids][]', oc.id, @summative_task.criterions.include?(oc)%><%="<span style=\"font-weight:bold\">#{oc.category}:</span> #{oc.title}"%>
+			<br />
+			<%end%>
 
-  <%=select_tag 'summative_task[level]', options_for_select(blooms_choices, @summative_task.level)%>
+		</td>
 
-  </td>
+		<td>
 
-  <td>
-  
-    <%= form.text_field :task %>
-    
-  </td></tr>
-  
-  </table>
-  <br />
-  <table>
-  <tr class="tint"><td colspan="7"><label>How will students know what is expected of them on the summative task(s)?</label> (Rubrics, checklists, template, exemplars, etc.)</td></tr>
-  <tr><td colspan="7">X</td></tr>
-  </table>
-  </div>
-  
+			<%=select_tag 'summative_task[level]', options_for_select(blooms_choices, @summative_task.level)%>
+
+		</td>
+
+		<td>
+
+			<%= form.text_field :task %>
+
+		</td></tr>
+
+	</table>
+
+</div>

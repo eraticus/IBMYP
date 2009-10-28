@@ -1,0 +1,59 @@
+<h1>Editing</h1>
+
+<% form_for(@unit_planner) do |form| %>
+  <%= form.error_messages %>
+
+<%#= render :partial => f %>
+
+  
+	<h1>Stage 1: Unit Outcome Visioning</h1>
+	<h2>Integrate significant concept, area of interaction and unit question</h2>
+
+	<div style="float:left;width:40%;">
+		<div style="margin:5px;background-color:yellow;width:100%;text-align:center;border:1px solid #000000">
+			<h3>Area of Interaction</h3>
+			(How will this area of interaction provide a focused context for this unit?)
+		</div>
+		<div style="height:100px;margin:5px;width:100%;border:1px solid #000000">
+		<%= form.select :area_of_interaction, ["Approaches to Learning", "Environments", "Heath and Social Education", "Human Ingenuity", "Community and Service"].sort %>
+	</div>
+</div>
+
+<div style="float:right;width:40%;">
+
+	<div style="height:90px;margin:5px;background-color:yellow;width:100%;text-align:center;border:1px solid #000000">
+		<h3>Significant Concept(s)</h3>
+		Interdisiplinary
+		Reflects the AOI
+	</div>
+
+	<%= form.text_area :significant_concept, :style=>"height:100px;margin:5px;width:100%;border:1px solid #000000" %>
+
+</div>
+
+<div class="" style="clear:both;margin-left:auto;margin-right:auto;width:40%;">
+	<div style="text-align:center;height:90px;background-color:yellow;margin:5px;width:100%;border:1px solid #000000">
+		<h3>Unit Question</h3>
+		Interdisciplinary
+		Reflects the AOI
+		Leads to the Significant Concept
+	</div>
+	<%= form.text_area :unit_question, :style=>"height:100px;margin:5px;width:400px;border:1px solid #000000" %>
+
+
+	<div style="text-align:center;height:90px;background-color:yellow;margin:5px;width:100%;border:1px solid #000000">
+		<h3>Subject Area Question(s) (opt.)</h3>
+		Subject area translation of the Unit Question
+	</div>
+	<%= form.text_area :subject_area_question, :style=>"height:100px;margin:5px;width:400px;border:1px solid #000000" %>
+
+
+</div>
+
+<p>
+<%= form.submit 'Update'%>
+</p>
+
+<% end %>
+
+<%= link_to 'Show', @unit_planner %>

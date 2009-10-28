@@ -1,17 +1,42 @@
-<h1>Editing</h1>
+<h1>Editing Identification</h1>
 
-<% form_for(@unit_planner) do |f| %>
-  <%= f.error_messages %>
+<% form_for(@unit_planner) do |form| %>
+  <%= form.error_messages %>
 
-<%= render :partial => f %>
+<%#= render :partial => f %>
 
-  <p>
-  <%= f.submit 'Update'%>
-  </p>
   
 
         
-<% end %>
 
-<%= link_to 'Show', @unit_planner %> |
-<%= link_to 'Back', unit_planners_path %>
+
+<table>
+	<tr><td><label>Subject Area / Course</label></td>
+		<td>
+			<%=collection_select(:unit_planner, :subject_id, Subject.all(:order=>:name), :id, :name, {:prompt => false})%>
+			<div id="course">
+			<%= render :partial => 'course', :locals=>{:courses=>@unit_planner.subject.courses} %>
+		</div>
+
+	</td>
+
+	<td><label>MYP Level:</label><%= form.select :blooms_level, [1,2,3,4,5,6] %></td></tr>
+
+		<tr><td><label>Unit Topic</label></td><td colspan="2"><%= form.text_field :unit_topic, :style=>"width:440px;" %></td></tr>
+		<tr><td><label>Unit Title</label></td><td colspan="2"><%= form.text_field :unit_title, :style=>"width:440px;" %></td></tr>
+		<tr><td><label>Teacher(s)</label></td><td colspan="2"><%= form.text_field :teachers, :style=>"width:440px;" %></td></tr>
+		<tr><td><label>Unit order</label><%=form.select :unit_order, (1..20)%></td><td><label># of weeks</label><%= form.select :num_weeks, (1..20) %></td><td><label>Year:</label><%= form.select :year, [["2009-2010","2009"], ["2010-2011","2010"]] %></td></tr>
+		
+	</table>
+	
+	<p>
+  <%= form.submit 'Update'%>
+  </p>
+  
+	
+	
+	<% end %>
+
+	<%= link_to 'Show', @unit_planner %> |
+	<%= link_to 'Back', unit_planners_path %>
+	
