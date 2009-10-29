@@ -1,0 +1,13 @@
+<p>
+  <b>Learner profile:</b>
+  <%=h @lprofile.learner_profile_id %>
+</p>
+
+<p>
+  <b>Unit planner:</b>
+  <%=h @lprofile.unit_planner %>
+</p>
+
+
+<%= link_to 'Edit', edit_lprofile_path(@lprofile) %> |
+<%= link_to 'Back', lprofiles_path %>

@@ -200,7 +200,7 @@ class UnitPlannersController < ApplicationController
     end
   end
   
-  def update_lprofiles
+  def update_learner_profiles
     @unit_planner = UnitPlanner.find(params[:id])
     
     #if the learner_profiles checkbox array is empty,
@@ -213,7 +213,7 @@ class UnitPlannersController < ApplicationController
 
         flash[:notice] = 'UnitPlanner was successfully updated.'
         format.html do
-          redirect_to(unit_planner_url(@unit_planner, :anchor=>'lprofiles'))
+          redirect_to(unit_planner_url(@unit_planner, :anchor=>'learner_profiles'))
         end
         format.xml  { head :ok }
       else

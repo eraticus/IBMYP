@@ -154,19 +154,19 @@
 			<div class="title">Learning Process</div>
 			
 		<%# Need to make this a partial%>	
-		<div id="lprofiles" class="section">
+		<div id="learner_profiles" class="section">
 			<div class="title">Learner Profile</div>
 			<div style="min-height:36px">
 
-				<%for lprofile in @unit_planner.lprofiles%>
+				<%for learner_profile in @unit_planner.learner_profiles%>
 				<div>
-					<b><%=lprofile.trait.name%></b><%=": #{lprofile.description}" unless lprofile.description.blank?%>
+					<b><%=learner_profile.trait.name%></b><%=": #{learner_profile.description}" unless learner_profile.description.blank?%>
 				</div>
 				<%end%>
 
 			</div>
 				<div class="navigation">
-					<%= link_to "Select Traits", edit_unit_planner_lprofile_path(@unit_planner)%>
+					<%= link_to "Select Traits", edit_unit_planner_learner_profile_path(@unit_planner)%>
 				</div>
 
 			</div>

@@ -77,9 +77,8 @@ ActiveRecord::Schema.define(:version => 20091026190406) do
   end
 
   create_table "learner_profiles", :force => true do |t|
+    t.integer  "trait_id"
     t.integer  "unit_planner_id"
-    t.string   "name"
-    t.boolean  "selected"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -98,14 +97,6 @@ ActiveRecord::Schema.define(:version => 20091026190406) do
     t.string   "description"
     t.integer  "intelligence_id"
     t.integer  "unit_planner_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "lprofiles", :force => true do |t|
-    t.integer  "trait_id"
-    t.integer  "unit_planner_id"
-    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

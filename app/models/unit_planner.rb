@@ -21,8 +21,8 @@ class UnitPlanner < ActiveRecord::Base
   
   #TODO: change these names! Look at
   # models
-  has_many :lprofiles
-  has_many :traits, :through=>:lprofiles
+  has_many :learner_profiles
+  has_many :traits, :through=>:learner_profiles
   
   has_many :learning_styles
   has_many :intelligences, :through=>:learning_styles
@@ -35,7 +35,7 @@ class UnitPlanner < ActiveRecord::Base
 
   # begin lifecycle methods
   
-  before_save :set_lprofile_descriptions
+  before_save :set_learner_profile_descriptions
   before_save :set_learning_style_descriptions
   
   after_save {|y| y.objectives.clear if y.subject_id_changed?}
@@ -45,21 +45,21 @@ class UnitPlanner < ActiveRecord::Base
 
   # end lifecycle methods
   
-  def set_lprofile_descriptions  
+  def set_learner_profile_descriptions  
     
     return unless learner_profile_descriptions
     
-    # delete any current lprofile.description values
-    lprofiles.each do |lprofile|
-      lprofile.update_attribute(:description, nil)
+    # delete any current learner_profile.description values
+    learner_profiles.each do |lp|
+      lp.update_attribute(:description, nil)
     end
           
     for x in learner_profile_descriptions.keys
       if trait_ids.include? x.to_i
-        # find the lprofile corresponding to the trait
+        # find the learner_profile corresponding to the trait
         # and update the description from the virtual attribute
-        lprofile = lprofiles.find_by_trait_id(x.to_i)
-        lprofile.update_attribute(:description, learner_profile_descriptions[x])
+        learner_profile = LearnerProfile.find_by_trait_id(x.to_i)
+        learner_profile.update_attribute(:description, learner_profile_descriptions[x])
       end
     end
   end
@@ -67,7 +67,6 @@ class UnitPlanner < ActiveRecord::Base
   def set_learning_style_descriptions  
     return unless learning_style_descriptions
     
-    # delete any current lprofile.description values
     learning_styles.each do |style|
       style.update_attribute(:description, nil)
     end
