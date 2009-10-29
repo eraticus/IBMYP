@@ -1,0 +1,22 @@
+<h1>Learner Profiles</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+
+<% @learner_profiles.each do |learner_profile| %>
+  <tr id=<%="#{dom_id learner_profile}"%>>
+	<td style="font-style:italic"><%=h learner_profile.name %></td>
+    
+    <td><%= link_to 'Show', learner_profile %></td>
+    <td><%= link_to 'Edit', edit_learner_profile_path(learner_profile) %></td>
+    <td><%= link_to 'Destroy', learner_profile, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New learner_profile', new_learner_profile_path %>

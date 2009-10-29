@@ -6,11 +6,11 @@
 <% form_for(@unit_planner, :url=>update_lprofiles_unit_planner_path(@unit_planner.id), :html=>{:method=>:put}) do |f| %>
   <%= f.error_messages %>
 
-	<%for learner_profile in LearnerProfile.all(:order=>:name)%>
+	<%for trait in Trait.all(:order=>:name)%>
 
 	<div>
-	<%=check_box_tag "unit_planner[learner_profile_ids][]", learner_profile.id, @unit_planner.learner_profile_ids.include?(learner_profile.id)%><%="#{learner_profile.name}"%> <%=text_field_tag "unit_planner[learner_profile_descriptions][#{learner_profile.id}]",
-	(@unit_planner.lprofiles.find_by_learner_profile_id(learner_profile.id).description if @unit_planner.lprofiles.find_by_learner_profile_id(learner_profile.id)),:size => 60%>
+	<%=check_box_tag "unit_planner[trait_ids][]", trait.id, @unit_planner.trait_ids.include?(trait.id)%><%="#{trait.name}"%> <%=text_field_tag "unit_planner[learner_profile_descriptions][#{trait.id}]",
+	(@unit_planner.lprofiles.find_by_trait_id(trait.id).description if @unit_planner.lprofiles.find_by_trait_id(trait.id)),:size => 60%>
 	</div>
 	<%end%>
   <p>

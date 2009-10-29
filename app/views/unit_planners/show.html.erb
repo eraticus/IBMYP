@@ -46,11 +46,17 @@
 		<% end %>
 	</div>
 
-
 </div>
 
 <div class="section_1">
 	<div class="title">Summative and Formative Tasks</div>
+
+<div style="color: #f00;margin-bottom: 0;padding: 5px;">	
+<%= "#{pluralize(@objectives_sans_formative_tasks.size, "Objectives")} #{@objectives_sans_formative_tasks.join(", ")} do not have Formative Tasks" unless @objectives_sans_formative_tasks.blank?%>
+</div>
+<div style="color: #f00;margin-bottom: 0;padding: 5px;">	
+<%= "Criterions #{@criterions_sans_summative_tasks} do not have Summative Tasks" unless @criterions_sans_summative_tasks.blank?%>
+</div>
 
 <!-- summative tasks -->
 <div class="section" id="summative_tasks">
@@ -154,7 +160,7 @@
 
 				<%for lprofile in @unit_planner.lprofiles%>
 				<div>
-					<b><%=lprofile.learner_profile.name%></b><%=": #{lprofile.description}" unless lprofile.description.blank?%>
+					<b><%=lprofile.trait.name%></b><%=": #{lprofile.description}" unless lprofile.description.blank?%>
 				</div>
 				<%end%>
 

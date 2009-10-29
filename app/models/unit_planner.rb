@@ -11,10 +11,6 @@ class UnitPlanner < ActiveRecord::Base
   has_many :formative_tasks, :dependent=>:destroy
   has_many :learning_styles, :dependent=>:destroy
   
-  has_many :learner_profiles, :dependent=>:destroy
-  # so does not need learner_profile_attributes=(attributes)
-  accepts_nested_attributes_for :learner_profiles, :allow_destroy=>true
-  
   has_many :learning_styles, :dependent=>:destroy
   accepts_nested_attributes_for :learning_styles, :allow_destroy=>true
   
@@ -26,7 +22,7 @@ class UnitPlanner < ActiveRecord::Base
   #TODO: change these names! Look at
   # models
   has_many :lprofiles
-  has_many :learner_profiles, :through=>:lprofiles
+  has_many :traits, :through=>:lprofiles
   
   has_many :learning_styles
   has_many :intelligences, :through=>:learning_styles
@@ -38,8 +34,6 @@ class UnitPlanner < ActiveRecord::Base
   has_and_belongs_to_many :standards, :order=>'label'
 
   # begin lifecycle methods
-  after_create :add_learner_profiles # not after save!
-  after_create :add_learning_styles # not after save!
   
   before_save :set_lprofile_descriptions
   before_save :set_learning_style_descriptions
@@ -61,10 +55,10 @@ class UnitPlanner < ActiveRecord::Base
     end
           
     for x in learner_profile_descriptions.keys
-      if learner_profile_ids.include? x.to_i
-        # find the lprofile corresponding to the learner_profile
+      if trait_ids.include? x.to_i
+        # find the lprofile corresponding to the trait
         # and update the description from the virtual attribute
-        lprofile = lprofiles.find_by_learner_profile_id(x.to_i)
+        lprofile = lprofiles.find_by_trait_id(x.to_i)
         lprofile.update_attribute(:description, learner_profile_descriptions[x])
       end
     end

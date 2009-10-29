@@ -1,7 +1,7 @@
 class CreateLprofiles < ActiveRecord::Migration
   def self.up
     create_table :lprofiles do |t|
-      t.integer :learner_profile_id
+      t.integer :trait_id
       t.integer :unit_planner_id
       t.string :description
 

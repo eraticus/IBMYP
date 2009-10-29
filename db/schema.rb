@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(:version => 20091026190406) do
   end
 
   create_table "lprofiles", :force => true do |t|
-    t.integer  "learner_profile_id"
+    t.integer  "trait_id"
     t.integer  "unit_planner_id"
     t.string   "description"
     t.datetime "created_at"
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(:version => 20091026190406) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "label"
   end
 
   create_table "standards", :force => true do |t|
@@ -154,6 +155,7 @@ ActiveRecord::Schema.define(:version => 20091026190406) do
     t.integer  "skill_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "label"
   end
 
   create_table "subjects", :force => true do |t|
@@ -168,6 +170,12 @@ ActiveRecord::Schema.define(:version => 20091026190406) do
     t.string   "description"
     t.integer  "level"
     t.string   "task"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "traits", :force => true do |t|
+    t.text     "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
