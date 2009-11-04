@@ -41,7 +41,7 @@ class UnitPlannersController < ApplicationController
     # move to model? Also, this seems a bit complicated. Any way to simplify?
     x = @unit_planner.objectives
     y = @unit_planner.formative_tasks.collect{|ft| ft.objectives}.flatten.uniq
-    @objectives_sans_formative_tasks = (x - y).collect{|x| "#{x.criterion.category}.#{x.subcategory}"}
+    @objectives_sans_formative_tasks = (x - y).collect{|x| "#{x.criterion.category}.#{x.subcategory}"}.sort
     @criterions_sans_summative_tasks = (@unit_planner.criterions - @unit_planner.summative_tasks.collect(&:criterions).flatten.uniq).collect(&:category).join(", ")
 
     respond_to do |format|

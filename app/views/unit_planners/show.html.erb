@@ -51,15 +51,13 @@
 <div class="section_1">
 	<div class="title">Summative and Formative Tasks</div>
 
-<div style="color: #f00;margin-bottom: 0;padding: 5px;">	
-<%= "#{pluralize(@objectives_sans_formative_tasks.size, "Objectives")} #{@objectives_sans_formative_tasks.join(", ")} do not have Formative Tasks" unless @objectives_sans_formative_tasks.blank?%>
-</div>
-<div style="color: #f00;margin-bottom: 0;padding: 5px;">	
-<%= "Criterions #{@criterions_sans_summative_tasks} do not have Summative Tasks" unless @criterions_sans_summative_tasks.blank?%>
-</div>
 
 <!-- summative tasks -->
-<div class="section" id="summative_tasks">
+<div class="section">
+	<div style="color: #f00;margin-bottom: 0;padding: 5px;">	
+	<%= "Criterions #{@criterions_sans_summative_tasks} do not have Summative Tasks" unless @criterions_sans_summative_tasks.blank?%>
+	</div>
+	
 	<table>
 		<tr class="tint"><td colspan="4"><label>Summative Assessment Task(s)</label></td><td><label>MYP Criteria</label></td><td><label>Blooms Level</label></td><td><label>Type of Task</label></td></tr>
 		<%=render :partial=>'summative_task', :collection=>@unit_planner.summative_tasks %>
@@ -68,6 +66,9 @@
 </div>
 
 <div class="section" id='formative_tasks'>
+	<div style="color: #f00;margin-bottom: 0;padding: 5px;">	
+	<%= "#{pluralize(@objectives_sans_formative_tasks.size, "Objectives")} #{@objectives_sans_formative_tasks.join(", ")} do not have Formative Tasks" unless @objectives_sans_formative_tasks.blank?%>
+	</div>
 
 	<!-- change architecture to-->
 	<!-- render :partial=>'formative_tasks' # plural!! -->
