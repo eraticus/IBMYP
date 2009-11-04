@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091026190406) do
+ActiveRecord::Schema.define(:version => 20091104204316) do
 
   create_table "approaches", :force => true do |t|
     t.string   "name"
@@ -180,9 +180,9 @@ ActiveRecord::Schema.define(:version => 20091026190406) do
     t.string   "teachers"
     t.string   "year"
     t.string   "area_of_interaction"
-    t.string   "significant_concept"
-    t.string   "unit_question"
-    t.string   "subject_area_question"
+    t.text     "significant_concept"
+    t.text     "unit_question"
+    t.text     "subject_area_question"
     t.string   "myp_criteria"
     t.string   "type_of_task"
     t.integer  "user_id"
