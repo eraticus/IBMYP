@@ -31,6 +31,15 @@ class IndicatorsController < ApplicationController
     # what we are doing here. Simplify later if possible
     @standard = Standard.find(params[:standard_id])
     @indicator = @standard.indicators.new
+    
+    # label = @subject.standards.collect(&:label).last.succ unless @subject.standards.empty?
+    # label = '1' if label.blank?
+    # @standard.label=label
+    
+    
+    label = @standard.indicators.collect(&:label).last.succ unless @standard.indicators.empty?
+    label = '1' if label.blank?
+    @indicator.label=label
 
     respond_to do |format|
       format.html # new.html.erb

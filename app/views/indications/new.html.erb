@@ -1,17 +1,17 @@
 <h1>New Indicator</h1>
-<%= "New Indicator for \"#{@standard.name}\" under the subject \"#{@standard.name}\"" %>
+<%= "New Indicator for \"#{@standard.name}\" under the subject \"#{@standard.subject.name}\"" %>
 
 <% form_for([@standard, @indicator]) do |f| %>
   <%= f.error_messages %>
 
-  <p>
+  <span>
     <%= f.label :label %><br />
     <%= f.text_field :label %>
-  </p>
-  <p>
+  </span>
+  <span>
     <%= f.label :description %><br />
     <%= f.text_area :description %>
-  </p>
+  </span>
 
     <%= f.submit 'Create' %>
   </p>

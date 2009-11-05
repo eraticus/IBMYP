@@ -17,5 +17,4 @@
   </p>
 <% end %>
 
-<%= link_to 'Show', @indicator %> |
-<%= link_to 'Back', @standard %>
+<%= link_to ('Back', standard_url(@indicator.standard, :anchor=>dom_id(@indicator))) %>

@@ -30,6 +30,11 @@ class StandardsController < ApplicationController
   def new
     @subject = Subject.find(params[:subject_id])
     @standard = @subject.standards.new
+    
+    label = @subject.standards.collect(&:label).last.succ unless @subject.standards.empty?
+    label = '1' if label.blank?
+    
+    @standard.label=label
 
     respond_to do |format|
       format.html # new.html.erb
@@ -69,7 +74,7 @@ class StandardsController < ApplicationController
     respond_to do |format|
       if @standard.update_attributes(params[:standard])
         flash[:notice] = 'Standard was successfully updated.'
-        format.html { redirect_to(@standard) }
+        format.html { redirect_to subject_url(@standard.subject, :anchor=>"standards") }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

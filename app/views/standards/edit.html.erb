@@ -16,4 +16,4 @@
   </p>
 <% end %>
 
-<%= link_to 'Cancel', @standard %>
+<%= link_to 'Cancel', subject_url(@standard.subject, :anchor=>dom_id(@standard)) %>

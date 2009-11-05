@@ -1,5 +1,5 @@
 <h1>New Indicator</h1>
-<%= "New Indicator for \"#{@standard.name}\" under the subject \"#{@standard.name}\"" %>
+<%= "New Indicator for the standard \"#{@standard.label}. #{@standard.name}\" under the subject \"#{@standard.subject.name}\"" %>
 
 <% form_for([@standard, @indicator]) do |f| %>
   <%= f.error_messages %>
