@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :coverages
+
   map.resources :strategies
 
   map.resources :approaches

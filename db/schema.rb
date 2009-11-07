@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091104204316) do
+ActiveRecord::Schema.define(:version => 20091106225613) do
 
   create_table "approaches", :force => true do |t|
     t.string   "name"
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(:version => 20091104204316) do
     t.integer  "subject_id"
     t.integer  "standard_id"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "coverages", :id => false, :force => true do |t|
+    t.integer  "unit_planner_id"
+    t.integer  "standard_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -84,15 +91,6 @@ ActiveRecord::Schema.define(:version => 20091104204316) do
     t.datetime "updated_at"
   end
 
-  create_table "learning_style", :force => true do |t|
-    t.integer  "unit_planner_id"
-    t.integer  "intelligence_id"
-    t.boolean  "selected"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "learning_styles", :force => true do |t|
     t.string   "description"
     t.integer  "intelligence_id"
@@ -130,13 +128,6 @@ ActiveRecord::Schema.define(:version => 20091104204316) do
     t.string   "label"
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "standards_unit_planners", :force => true do |t|
-    t.integer  "standard_id"
-    t.integer  "unit_planner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

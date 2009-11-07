@@ -1,0 +1,22 @@
+<h1>Listing coverages</h1>
+
+<table>
+  <tr>
+    <th>Unit planner</th>
+    <th>Standard</th>
+  </tr>
+
+<% @coverages.each do |coverage| %>
+  <tr>
+    <td><%=h coverage.unit_planner_id %></td>
+    <td><%=h coverage.standard_id %></td>
+    <td><%= link_to 'Show', coverage %></td>
+    <td><%= link_to 'Edit', edit_coverage_path(coverage) %></td>
+    <td><%= link_to 'Destroy', coverage, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New coverage', new_coverage_path %>

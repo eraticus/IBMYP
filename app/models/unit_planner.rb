@@ -31,7 +31,10 @@ class UnitPlanner < ActiveRecord::Base
   has_many :strategies, :through=>:approaches
 
   has_and_belongs_to_many :objectives, :include=>:criterion , :order => 'objectives.subcategory' #'criterions.category, objectives.subcategory'
-  has_and_belongs_to_many :standards, :order=>'label'
+  
+  #has_and_belongs_to_many :standards, :order=>'label'
+  has_many :coverages
+  has_many :standards, :through=>:coverages, :order=>'label'
 
   # begin lifecycle methods
   
