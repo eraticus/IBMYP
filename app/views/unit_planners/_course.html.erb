@@ -5,7 +5,7 @@ end
 %>
 
 <%unless courses.empty?%>
-<%=collection_select(:unit_planner, :course_id, courses, :id, :name, {:prompt => true})%>
+<%=collection_select(:unit_planner, :course_id, courses, :id, :name)%>
 <%end%>
 
 
