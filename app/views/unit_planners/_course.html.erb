@@ -4,8 +4,8 @@ unless defined?(courses)
 end
 %>
 
-<%#unless courses.empty?%>
+<%unless courses.empty?%>
 <%=collection_select(:unit_planner, :course_id, courses, :id, :name, {:prompt => true})%>
-<%#end%>
+<%end%>
 
 
