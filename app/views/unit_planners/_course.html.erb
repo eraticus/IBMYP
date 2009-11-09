@@ -4,7 +4,8 @@ unless defined?(courses)
 end
 %>
 
+<%#unless courses.empty?%>
 <%=collection_select(:unit_planner, :course_id, courses, :id, :name, {:prompt => true})%>
+<%#end%>
 
-<%= observe_field :unit_planner_subject_id, :with=>"subject_id", :url => { :action => :update_course_selection } %>
 
