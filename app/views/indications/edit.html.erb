@@ -1,6 +1,6 @@
 <h1>Select Indicators</h1>
 
-<% form_for(@unit_planner) do |f| %>
+<% form_for(@unit_planner, :url=>update_indications_unit_planner_path(@unit_planner)) do |f| %>
   <%= f.error_messages %>
 
 <%for standard in @unit_planner.subject.standards%>

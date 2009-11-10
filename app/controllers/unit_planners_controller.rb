@@ -180,6 +180,24 @@ class UnitPlannersController < ApplicationController
     update
   end
   
+  def update_indications
+    @unit_planner = UnitPlanner.find(params[:id])
+    
+    respond_to do |format|
+      if @unit_planner.update_attributes(params[:unit_planner])
+
+        flash[:notice] = 'Unit Planner Standards were successfully updated.'
+        format.html do
+            redirect_to(unit_planner_url(@unit_planner, :anchor=>"indicators"))
+        end
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @unit_planner.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
   def update_learning_styles
     @unit_planner = UnitPlanner.find(params[:id])
     
