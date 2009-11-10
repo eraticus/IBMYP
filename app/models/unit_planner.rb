@@ -38,7 +38,7 @@ class UnitPlanner < ActiveRecord::Base
   # begin lifecycle methods
   
   before_save :set_learner_profile_descriptions
-  before_save :set_learning_style_descriptions
+ before_save :set_learning_style_descriptions
   
   after_save {|y| y.objectives.clear if y.subject_id_changed?}
   after_save {|y| y.indications.clear if y.subject_id_changed?}
@@ -52,15 +52,18 @@ class UnitPlanner < ActiveRecord::Base
     return unless learner_profile_descriptions
     
     # delete any current learner_profile.description values
-    learner_profiles.each do |lp|
+    self.learner_profiles.each do |lp|
       lp.update_attribute(:description, nil)
     end
           
     for x in learner_profile_descriptions.keys
       if trait_ids.include? x.to_i
+        p "Found trait_id #{x.to_i}"
         # find the learner_profile corresponding to the trait
         # and update the description from the virtual attribute
-        learner_profile = LearnerProfile.find_by_trait_id(x.to_i)
+        learner_profile = self.learner_profiles.find_by_trait_id(x.to_i)
+        p "Found LearnerProfile for trait_id #{x.to_i}"
+        p "Should set description to #{learner_profile_descriptions[x]}"
         learner_profile.update_attribute(:description, learner_profile_descriptions[x])
       end
     end
