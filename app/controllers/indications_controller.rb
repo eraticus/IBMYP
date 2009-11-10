@@ -4,7 +4,6 @@
 
 class IndicationsController < ApplicationController
   
-  layout 'admin'
   # GET /indications
   # GET /indications.xml
   def index
