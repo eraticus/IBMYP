@@ -28,6 +28,8 @@ class CriterionsController < ApplicationController
   def new
     @subject = Subject.find params[:subject_id]
     @criterion = @subject.criterions.new
+    @criterion.category = @subject.criterions.collect(&:category).last.next unless @subject.criterions.empty?
+    @criterion.category ||= 'A'
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,8 +39,9 @@ class CriterionsController < ApplicationController
 
   # GET /criterions/1/edit
   def edit
-    @subject = Subject.find params[:subject_id]
-    @criterion = @subject.criterions.find(params[:id])
+    @criterion = Criterion.find(params[:id])
+    @subject = @criterion.subject
+    
   end
 
   # POST /criterions
@@ -62,13 +65,14 @@ class CriterionsController < ApplicationController
   # PUT /criterions/1
   # PUT /criterions/1.xml
   def update
-    @subject = Subject.find(params[:subject_id])
-    @criterion = @subject.criterions.find(params[:id])
+    @criterion = Criterion.find(params[:id])
+    @subject = @criterion.subject
+    
 
     respond_to do |format|
       if @criterion.update_attributes(params[:criterion])
         flash[:notice] = 'Criterion was successfully updated.'
-        format.html { redirect_to(@criterion) }
+        format.html { redirect_to(subject_path(@subject, :anchor=>dom_id(@subject))) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

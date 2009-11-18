@@ -13,7 +13,7 @@
 			<td><strong><%= criterion.category %>: </strong><em><%= criterion.title %></em></td>
 			<td style="width:200px;">
 				<%= link_to("View", criterion_path(criterion))%> |
-				<%= link_to("Edit", edit_subject_criterion_path(@subject, criterion))%> |
+				<%= link_to("Edit", edit_criterion_path(criterion))%> |
 				<%= link_to "Delete", criterion, :confirm=>"Are you sure?", :method=>"delete" %>
 			</td>
 		</tr>

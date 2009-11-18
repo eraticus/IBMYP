@@ -29,7 +29,8 @@ class ObjectivesController < ApplicationController
   def new
     @criterion = Criterion.find params[:criterion_id]
     @objective = @criterion.objectives.new
-
+    @objective.subcategory = @criterion.objectives.collect(&:subcategory).last.next unless @criterion.objectives.empty?
+    @objective.subcategory ||= '1'
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @objective }
