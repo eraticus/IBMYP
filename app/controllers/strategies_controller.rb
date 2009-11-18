@@ -29,7 +29,8 @@ class StrategiesController < ApplicationController
   def new
     @skill = Skill.find(params[:skill_id])
     @strategy = Strategy.new
-    @strategy.label = @skill.strategies.collect(&:label).last.next
+    @strategy.label = @skill.strategies.collect(&:label).last.next unless @skill.strategies.empty?
+    @strategy.label ||= '1'
 
     respond_to do |format|
       format.html # new.html.erb

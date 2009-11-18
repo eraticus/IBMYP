@@ -28,6 +28,8 @@ class SkillsController < ApplicationController
   # GET /skills/new.xml
   def new
     @skill = Skill.new
+    @skill.label = Skill.all.collect(&:label).sort.last.next unless Skill.all.empty?
+    @skill.label ||= 'A'
 
     respond_to do |format|
       format.html # new.html.erb
@@ -48,7 +50,7 @@ class SkillsController < ApplicationController
     respond_to do |format|
       if @skill.save
         flash[:notice] = 'Skill was successfully created.'
-        format.html { redirect_to(skills_url) }
+        format.html { redirect_to(skills_url(:anchor=>dom_id(@skill))) }
         format.xml  { render :xml => @skill, :status => :created, :location => @skill }
       else
         format.html { render :action => "new" }
@@ -65,7 +67,7 @@ class SkillsController < ApplicationController
     respond_to do |format|
       if @skill.update_attributes(params[:skill])
         flash[:notice] = 'Skill was successfully updated.'
-        format.html { redirect_to(skills_url) }
+        format.html { redirect_to(skills_url(:anchor=>dom_id(@skill))) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
