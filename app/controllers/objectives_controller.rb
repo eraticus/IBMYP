@@ -84,7 +84,7 @@ class ObjectivesController < ApplicationController
     @objective.destroy
 
     respond_to do |format|
-      format.html { redirect_to(objectives_url) }
+      format.html { redirect_to(criterion_url(@objective.criterion)) }
       format.xml  { head :ok }
     end
   end
