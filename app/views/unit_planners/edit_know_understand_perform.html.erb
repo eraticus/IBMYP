@@ -1,0 +1,16 @@
+<% form_for(@unit_planner) do |form| %>
+  <%= form.error_messages %>
+
+<% %w[know understand perform].each do |w| %>
+<p>
+	<%=hidden_field_tag(:anchor, "unit_content") %>
+<%=form.label w %><br/>
+<%=form.text_area w %>
+</p>
+
+<% end %>
+<p>
+<%= form.submit 'Update'%>
+</p>
+
+<%end%>

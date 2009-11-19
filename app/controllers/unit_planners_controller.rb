@@ -18,12 +18,12 @@ class UnitPlannersController < ApplicationController
   # GET /unit_planners
   # GET /unit_planners.xml
   def index
-    user = User.find(params[:user_id]) if params[:user_id]
-    if user
-      @unit_planners = user.unit_planners
-    else
-      @unit_planners = UnitPlanner.all
-    end
+    # user = User.find(params[:user_id]) if params[:user_id]
+    #  if user
+    #    @unit_planners = user.unit_planners
+    #  else
+       @unit_planners = UnitPlanner.all
+    # end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -55,6 +55,7 @@ class UnitPlannersController < ApplicationController
   def new
     @unit_planner = UnitPlanner.new
     @unit_planner.subject = Subject.first(:order=>:name)
+    @unit_planner.teachers=current_user.username
 
     respond_to do |format|
       format.html # new.html.erb
@@ -90,6 +91,10 @@ class UnitPlannersController < ApplicationController
   end
   
   def edit_tasks
+    @unit_planner = UnitPlanner.find(params[:id])
+  end
+  
+  def edit_know_understand_perform
     @unit_planner = UnitPlanner.find(params[:id])
   end
     
@@ -255,7 +260,7 @@ class UnitPlannersController < ApplicationController
           if @unit_planner.objectives.empty?
             redirect_to(edit_objectives_unit_planner_url(@unit_planner)) #and return
           else
-            redirect_to(@unit_planner)
+            redirect_to(unit_planner_url(@unit_planner, :anchor=>params[:anchor]))
           end
         end
         format.xml  { head :ok }

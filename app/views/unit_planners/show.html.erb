@@ -130,14 +130,17 @@
 
 	<div class="section">
 
-		<div class="title">Unit Content</div>
+		<div id="unit_content" class="title">Unit Content</div>
 
 		<table border="0" cellspacing="5" cellpadding="5">
-			<tr><th>Know</th><th>Understand</th><th>Do</th></tr>
+			<tr><th>Know</th><th>Understand</th><th>Perform</th></tr>
 			<tr><td><%=h @unit_planner.know %></td>
 				<td><%=h @unit_planner.understand %></td>
 				<td><%=h @unit_planner.perform %></td></tr>
 			</table>
+			<div class="navigation">
+				<%= link_to ("Edit Know Understand Perform", edit_know_understand_perform_unit_planner_path()) %></div>
+			</div>
 
 		</div>
 
