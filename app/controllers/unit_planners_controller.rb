@@ -89,6 +89,15 @@ class UnitPlannersController < ApplicationController
     end
   end
   
+  # do I really need these little methods? Is this the best way?
+  def edit_diagnostic_assessment
+    @unit_planner = UnitPlanner.find params[:id]
+  end
+  
+  def edit_prior_knowledge
+    @unit_planner = UnitPlanner.find params[:id]
+  end
+  
   def edit_tasks
     @unit_planner = UnitPlanner.find(params[:id])
   end
@@ -230,7 +239,7 @@ class UnitPlannersController < ApplicationController
           if @unit_planner.objectives.empty?
             redirect_to(edit_objectives_unit_planner_url(@unit_planner)) #and return
           else
-            redirect_to(@unit_planner)
+            redirect_to(unit_planner_url(@unit_planner, :anchor=>params[:anchor]))
           end
         end
         format.xml  { head :ok }

@@ -4,12 +4,12 @@
 
 <div class="section">
 	<div class="title">Identification</div>
-	
+
 	<%=render :partial=>"identification"%>
 	<div class="navigation">
 		<%= link_to 'Edit Identification', edit_identification_unit_planner_path(@unit_planner) %>
 	</div>
-	
+
 </div>
 
 <div class="section">
@@ -55,9 +55,9 @@
 <!-- summative tasks -->
 <div class="section" id='summative_tasks'>
 	<div style="color: #f00;margin-bottom: 0;padding: 5px;">	
-	<%= "Criterions #{@criterions_sans_summative_tasks} do not have Summative Tasks" unless @criterions_sans_summative_tasks.blank?%>
+		<%= "Criterions #{@criterions_sans_summative_tasks} do not have Summative Tasks" unless @criterions_sans_summative_tasks.blank?%>
 	</div>
-	
+
 	<table>
 		<tr class="tint"><td colspan="4"><label>Summative Assessment Task(s)</label></td><td><label>MYP Criteria</label></td><td><label>Blooms Level</label></td><td><label>Type of Task</label></td></tr>
 		<%=render :partial=>'summative_task', :collection=>@unit_planner.summative_tasks %>
@@ -67,7 +67,7 @@
 
 <div class="section" id='formative_tasks'>
 	<div style="color: #f00;margin-bottom: 0;padding: 5px;">	
-	<%= "#{pluralize(@objectives_sans_formative_tasks.size, "Objectives")} #{@objectives_sans_formative_tasks.join(", ")} do not have Formative Tasks" unless @objectives_sans_formative_tasks.blank?%>
+		<%= "#{pluralize(@objectives_sans_formative_tasks.size, "Objectives")} #{@objectives_sans_formative_tasks.join(", ")} do not have Formative Tasks" unless @objectives_sans_formative_tasks.blank?%>
 	</div>
 
 	<!-- change architecture to-->
@@ -88,20 +88,20 @@
 
 		<%#= render :partial => 'indications/index', :object=>@unit_planner%>
 		<%#inline for now. Make a partial afterwards%>
-		
+
 		<%for standard in @unit_planner.subject.standards%>
 		<% if @unit_planner.indications.all.find{|x| x.indicator.standard==standard}%>
 		<div style="font-weight:bold" >
 			<%="#{standard.label}. #{standard.name}"%>
 		</div>
 		<%end%>
-			<%for indication in @unit_planner.indications.all(:include=>:indicator, :order=>"indicators.label").find_all{|y| y.indicator.standard==standard}%>
-			<div style="margin-left:15px">
-			
-<%="#{indication.indicator.standard.label}.#{indication.indicator.label}"%></span> <span><%="#{indication.indicator.description}"%>
-	</div>
-	
-				<%end%>
+		<%for indication in @unit_planner.indications.all(:include=>:indicator, :order=>"indicators.label").find_all{|y| y.indicator.standard==standard}%>
+		<div style="margin-left:15px">
+
+		<%="#{indication.indicator.standard.label}.#{indication.indicator.label}"%></span> <span><%="#{indication.indicator.description}"%>
+		</div>
+
+		<%end%>
 		<%end%>
 
 		<div class="navigation">
@@ -117,13 +117,24 @@
 	<div class="section">
 		<div class="title">Learning Readiness</div>
 
-		<b>Prior knowledge needed:</b>
-		<div style="height:36px">
-			<%=h @unit_planner.prior_knowledge %>
+		<div id="prior_knowledge">
+		<b>Prior knowledge needed:</b><p/>
+		<pre style="font-size:15px">
+<%=h @unit_planner.prior_knowledge %>
+</pre>
+			<div class="navigation">
+				<%= link_to "Edit Prior Knowledge Needed", edit_prior_knowledge_unit_planner_path(@unit_planner)%>
+				
+			</div>
 		</div>
-		<b>Diagnostic assessment(s):</b>
-		<div style="height:36px">
-			<%=h @unit_planner.diagnostic_assessments %>
+		<div id="diagnostic_assessment">
+		<b>Diagnostic assessment(s):</b><p/>
+		<pre style="font-size:15px">
+<%=h @unit_planner.diagnostic_assessments %>
+			</pre>
+			<div class="navigation">
+				<%= link_to "Edit Diagnostic Assessment", edit_diagnostic_assessment_unit_planner_path(@unit_planner)%>
+			</div>
 		</div>
 
 	</div>
@@ -150,90 +161,90 @@
 
 
 		</div>
-		
+
 		<div class="section_1">
 			<div class="title">Learning Process</div>
-			
-		<%# Need to make this a partial%>	
-		<div id="learner_profiles" class="section">
-			<div class="title">Learner Profile</div>
-			<div style="min-height:36px">
 
-				<%for learner_profile in @unit_planner.learner_profiles%>
-				<div>
-					<b><%=learner_profile.trait.name%></b><%=": #{learner_profile.description}" unless learner_profile.description.blank?%>
+			<%# Need to make this a partial%>	
+			<div id="learner_profiles" class="section">
+				<div class="title">Learner Profile</div>
+				<div style="min-height:36px">
+
+					<%for learner_profile in @unit_planner.learner_profiles%>
+					<div>
+						<b><%=learner_profile.trait.name%></b><%=": #{learner_profile.description}" unless learner_profile.description.blank?%>
+					</div>
+					<%end%>
+
 				</div>
-				<%end%>
-
-			</div>
 				<div class="navigation">
 					<%= link_to "Select Traits", edit_unit_planner_learner_profile_path(@unit_planner)%>
 				</div>
 
 			</div>
-		<%# Bottom of LProfiles%>
-		
-		<div class="section">
-			<div id="learning_styles" class="title">Learning Style Differentiation</div>
-			<div style="font-style:italic">
-				How will different learning styles be supported?
-			</div>
-			<%for learning_style in @unit_planner.learning_styles%>
+			<%# Bottom of LProfiles%>
+
+			<div class="section">
+				<div id="learning_styles" class="title">Learning Style Differentiation</div>
+				<div style="font-style:italic">
+					How will different learning styles be supported?
+				</div>
+				<%for learning_style in @unit_planner.learning_styles%>
 				<div>
 					<b><%= learning_style.intelligence.name %></b><%= ": #{learning_style.description}" unless learning_style.description.blank?%>
 				</div>
-			<%end%>
-			
-			<div class="navigation">
-				<%= link_to "Select Learning Styles", edit_unit_planner_learning_style_path(@unit_planner) %></div>
-			</div>
-		</div>
-		<div class="section">
-			<div class="title">Teaching Strategies to Support Learning</div>
-
-			<div style="height:36px">
-				<%=h @unit_planner.teaching_strategies %>
-			</div>
-		</div>
-
-		<div class="section" id="skills">
-			<div class="title">Approaches to Learning Skills</div>
-			
-			<% @skills.each do |skill| %>
-			<div style='margin:5px'>
-				<span style='font-weight:bold'><%=h "#{skill.label}. #{skill.name}"%></span>
-				<% Strategy.find_all_by_skill_id(skill.id, :order=>:label, :include=>:approaches, :conditions=>["approaches.unit_planner_id=?", @unit_planner.id]).each do |strategy| %>
-				<div style='margin:0px 15px'>
-					<%= h "#{strategy.label}. #{strategy.description}" if (@unit_planner.strategies.include? strategy) %>
-				</div>
 				<%end%>
+
+				<div class="navigation">
+					<%= link_to "Select Learning Styles", edit_unit_planner_learning_style_path(@unit_planner) %></div>
+				</div>
 			</div>
-			<% end %>
+			<div class="section">
+				<div class="title">Teaching Strategies to Support Learning</div>
 
-
-			<div class="navigation">
-				<%= link_to "Select Approaches", edit_unit_planner_approach_path(@unit_planner) %></div>
+				<div style="height:36px">
+					<%=h @unit_planner.teaching_strategies %>
+				</div>
 			</div>
-		</div>
 
-		<div class="section">
-			<div class="title">Learning Activities</div>
+			<div class="section" id="skills">
+				<div class="title">Approaches to Learning Skills</div>
 
-			<div style="height:36px">
-				<%=h @unit_planner.learning_activities %>
+				<% @skills.each do |skill| %>
+				<div style='margin:5px'>
+					<span style='font-weight:bold'><%=h "#{skill.label}. #{skill.name}"%></span>
+					<% Strategy.find_all_by_skill_id(skill.id, :order=>:label, :include=>:approaches, :conditions=>["approaches.unit_planner_id=?", @unit_planner.id]).each do |strategy| %>
+					<div style='margin:0px 15px'>
+						<%= h "#{strategy.label}. #{strategy.description}" if (@unit_planner.strategies.include? strategy) %>
+					</div>
+					<%end%>
+				</div>
+				<% end %>
+
+
+				<div class="navigation">
+					<%= link_to "Select Approaches", edit_unit_planner_approach_path(@unit_planner) %></div>
+				</div>
 			</div>
+
+			<div class="section">
+				<div class="title">Learning Activities</div>
+
+				<div style="height:36px">
+					<%=h @unit_planner.learning_activities %>
+				</div>
+			</div>
+
+			<div class="section">
+				<div class="title">Resources</div>
+
+				<div style="height:36px">
+					<%=h @unit_planner.resources %>
+				</div>
+
+			</div>
+
+
+
 		</div>
-
-	<div class="section">
-		<div class="title">Resources</div>
-
-		<div style="height:36px">
-			<%=h @unit_planner.resources %>
-		</div>
-
-	</div>
-
-
-
-</div>
-<%= link_to 'Back', unit_planners_path %>
+		<%= link_to 'Back', unit_planners_path %>
