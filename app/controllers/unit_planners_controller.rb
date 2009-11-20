@@ -90,39 +90,23 @@ class UnitPlannersController < ApplicationController
     end
   end
   
-  def edit_tasks
-    @unit_planner = UnitPlanner.find(params[:id])
+  # do I really need these little methods? Is this the best way?
+  def edit_diagnostic_assessment
+    @unit_planner = UnitPlanner.find params[:id]
   end
   
   def edit_know_understand_perform
     @unit_planner = UnitPlanner.find(params[:id])
   end
     
-  # edit backward planner section of unit_planner
-  def edit_backward_planner
-    @unit_planner = UnitPlanner.find(params[:id])
+  def edit_prior_knowledge
+    @unit_planner = UnitPlanner.find params[:id]
   end
   
-  # edit backward planner section of unit_planner
-  def update_backward_planner
+  def edit_tasks
     @unit_planner = UnitPlanner.find(params[:id])
-
-    respond_to do |format|
-      if @unit_planner.update_attributes(params[:unit_planner])
-        flash[:notice] = 'Backward planner was successfully updated.'
-        format.html do
-          redirect_to(unit_planner_path(@unit_planner, :anchor=>'backward_planner'))
-        end
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit_backward_planner" }
-        format.xml  { render :xml => @unit_planner.errors, :status => :unprocessable_entity }
-      end
-    end  
   end
-  
-  
-  
+      
   def update_tasks
 
     @unit_planner = UnitPlanner.find(params[:id])
