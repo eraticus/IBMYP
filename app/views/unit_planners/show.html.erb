@@ -113,7 +113,7 @@
 </div>
 
 <div class="section" id="backward_planner">
-	<h2>Backward Planning</h2>
+	<h2>Stage 2: Backward Planning through Inquiry</h2>
 	<div class="section">
 		<div class="title">Learning Readiness</div>
 
@@ -171,6 +171,17 @@
 			<%# Need to make this a partial%>	
 			<div id="learner_profiles" class="section">
 				<div class="title">Learner Profile</div>
+				
+				<% unless @unit_planner.learner_profiles.no_description.empty? %>
+				<div class="errorExplanation">	
+					<%for learner_profile in @unit_planner.learner_profiles%>
+						<%if learner_profile.description.blank?%>
+						<%="<em>#{learner_profile.trait.name}</em> does not have a description"%><br/>
+						<%end%>
+					<%end%>
+				</div>
+				<% end %>
+				
 				<div style="min-height:36px">
 
 					<%for learner_profile in @unit_planner.learner_profiles%>
@@ -188,7 +199,7 @@
 			<%# Bottom of LProfiles%>
 
 			<div class="section">
-				<div id="learning_styles" class="title">Learning Style Differentiation</div>
+				<div id="learning_styles" class="title">Learning Style Differentiation</div>				
 				<div style="font-style:italic">
 					How will different learning styles be supported?
 				</div>
