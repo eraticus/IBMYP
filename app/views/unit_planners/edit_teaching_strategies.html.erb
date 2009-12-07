@@ -1,0 +1,42 @@
+<h1>Select Teaching Strategies</h1>
+
+<% form_for(@unit_planner, :url=>update_learning_styles_unit_planner_path(@unit_planner)) do |f| %>
+<%= f.error_messages %>
+<%=hidden_field_tag :anchor, "teaching_strategies"%>
+
+<div style="margin:15px 5px">
+
+<table>
+<%for i in Intelligence.all(:order=>:name)%>
+	<tr>
+		<td>
+		<%=check_box_tag 'unit_planner[intelligence_ids][]', i.id, @unit_planner.intelligences.include?(i) %><%=i.name%>
+		</td>
+		<td>
+		<%=text_field_tag ("unit_planner[learning_style_descriptions][#{i.id}]", (@unit_planner.learning_styles.find_by_intelligence_id(i.id).description if @unit_planner.learning_styles.find_by_intelligence_id(i.id)), :size => 40)
+		%>
+		</td>
+	</tr>
+
+
+<%end%>
+</table>
+</div>
+
+
+<div style="margin:15px 5px">
+	<%=f.label :learning_extension%>
+	<%=f.text_field :learning_extension%>
+</div>
+
+<div style="margin:15px 5px">
+	<%=f.label :learning_support%>
+	<%=f.text_field :learning_support%>
+</div>
+
+<p>
+<%= f.submit 'Update' %>
+</p>
+<% end %>
+
+<%= link_to 'Cancel', unit_planner_path(@unit_planner, :anchor=>'teaching_strategies') %>

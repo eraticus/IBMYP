@@ -2,6 +2,7 @@
 
 <% form_for(@unit_planner) do |f| %>
 <%= f.error_messages %>
+<%= hidden_field_tag :anchor, "skills" %>
 
 <% @skills.each do |skill| %>
 <div style="margin:10px">

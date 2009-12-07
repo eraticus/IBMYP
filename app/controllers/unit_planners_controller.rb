@@ -91,6 +91,10 @@ class UnitPlannersController < ApplicationController
   end
   
   # do I really need these little methods? Is this the best way?
+  def edit_teaching_strategies
+    @unit_planner = UnitPlanner.find params[:id]
+  end
+  
   def edit_diagnostic_assessment
     @unit_planner = UnitPlanner.find params[:id]
   end
@@ -98,6 +102,11 @@ class UnitPlannersController < ApplicationController
   def edit_know_understand_perform
     @unit_planner = UnitPlanner.find(params[:id])
   end
+  
+  def edit_international_awareness
+    @unit_planner = UnitPlanner.find(params[:id])
+  end
+  
     
   def edit_prior_knowledge
     @unit_planner = UnitPlanner.find params[:id]

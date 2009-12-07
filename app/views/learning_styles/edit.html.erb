@@ -1,20 +1,21 @@
 <h1>Select Intelligences</h1>
 
 <% form_for(@unit_planner, :url=>update_learning_styles_unit_planner_path(@unit_planner)) do |f| %>
-  <%= f.error_messages %>
+<%= f.error_messages %>
 
-	<%for i in Intelligence.all(:order=>:name)%>
-	<div>
-		<div style="margin:5px">
-			<%=check_box_tag 'unit_planner[intelligence_ids][]', i.id, @unit_planner.intelligences.include?(i) %><%=i.name%>
-			<%=text_field_tag "unit_planner[learning_style_descriptions][#{i.id}]", @unit_planner.learning_styles.find_by_intelligence_id(i.id).description if @unit_planner.learning_styles.find_by_intelligence_id(i.id)
-			%>
-		</div>
-		</div>
-	<%end%>
+<%for i in Intelligence.all(:order=>:name)%>
+<div>
+	<div style="margin:5px">
+		<%=check_box_tag 'unit_planner[intelligence_ids][]', i.id, @unit_planner.intelligences.include?(i) %><%=i.name%>
+		
+		<%=text_field_tag "unit_planner[learning_style_descriptions][#{i.id}]", (@unit_planner.learning_styles.find_by_intelligence_id(i.id).description if @unit_planner.learning_styles.find_by_intelligence_id(i.id))
+		%>
+	</div>
+</div>
+<%end%>
 
-    <%= f.submit 'Update' %>
-  </p>
+<%= f.submit 'Update' %>
+</p>
 <% end %>
 
 <%= link_to 'Back', unit_planner_path(@unit_planner, :anchor=>'learning_styles') %>

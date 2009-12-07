@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091106225613) do
+ActiveRecord::Schema.define(:version => 20091207233417) do
 
   create_table "approaches", :force => true do |t|
     t.string   "name"
@@ -195,6 +195,7 @@ ActiveRecord::Schema.define(:version => 20091106225613) do
     t.text     "perform"
     t.text     "prior_knowledge"
     t.text     "diagnostic_assessments"
+    t.text     "learning_extension"
   end
 
   create_table "user_sessions", :force => true do |t|

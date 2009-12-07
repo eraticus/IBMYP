@@ -142,13 +142,15 @@
 	<div class="section">
 
 		<div id="unit_content" class="title">Unit Content</div>
+<br/>
+			<div class="title">Know</div>
+<pre><%=h @unit_planner.know %></pre>
+			<div class="title">Understand</div>
+			
+<pre><%=h @unit_planner.understand %></pre>
+				<div class="title">Do</div>				
+<pre><%=h @unit_planner.perform %></pre>
 
-		<table border="0" cellspacing="5" cellpadding="5">
-			<tr><th>Know</th><th>Understand</th><th>Do</th></tr>
-			<tr><td><%=h @unit_planner.know %></td>
-				<td><%=h @unit_planner.understand %></td>
-				<td><%=h @unit_planner.perform %></td></tr>
-			</table>
 			<div class="navigation">
 				<%= link_to ("Edit Know Understand Do", edit_know_understand_perform_unit_planner_path()) %></div>
 			</div>
@@ -156,17 +158,19 @@
 		</div>
 
 
-		<div class="section">
+		<div class="section" id="international_awareness">
 			<div class="title">Intercultural Awareness -- International Mindedness</div>
 			<div style="height:36px">
 				<%=h @unit_planner.intercultural_awareness %>
 			</div>
-
+			<div class="navigation">
+				<%= link_to ("Edit International Awareness", edit_international_awareness_unit_planner_path()) %></div>
+			</div>
 
 		</div>
 
 		<div class="section_1">
-			<div class="title">Learning Process</div>
+			<div class="title">Learning Support</div>
 
 			<%# Need to make this a partial%>	
 			<div id="learner_profiles" class="section">
@@ -199,7 +203,7 @@
 			<%# Bottom of LProfiles%>
 
 			<div class="section">
-				<div id="learning_styles" class="title">Learning Style Differentiation</div>				
+				<div id="learning_styles" class="title">Teaching Strategies to Support Learning</div>				
 				<div style="font-style:italic">
 					How will different learning styles be supported?
 				</div>
@@ -208,16 +212,17 @@
 					<b><%= learning_style.intelligence.name %></b><%= ": #{learning_style.description}" unless learning_style.description.blank?%>
 				</div>
 				<%end%>
-
-				<div class="navigation">
-					<%= link_to "Select Learning Styles", edit_unit_planner_learning_style_path(@unit_planner) %></div>
-				</div>
-			</div>
-			<div class="section">
-				<div class="title">Teaching Strategies to Support Learning</div>
-
-				<div style="height:36px">
-					<%=h @unit_planner.teaching_strategies %>
+				
+				<p>
+				<span style='font-weight:bold'>Learning Support:</span>
+				<%= @unit_planner.learning_support %>
+				</p>
+				<p>
+				<span style='font-weight:bold'>Learning Extension:</span>
+				<%= @unit_planner.learning_extension %>
+</p>
+				<div id="teaching_strategies" class="navigation">
+					<%= link_to "Teaching Strategies", edit_teaching_strategies_unit_planner_path(@unit_planner) %></div>
 				</div>
 			</div>
 
@@ -234,7 +239,7 @@
 					<%end%>
 				</div>
 				<% end %>
-
+				
 
 				<div class="navigation">
 					<%= link_to "Select Approaches", edit_unit_planner_approach_path(@unit_planner) %></div>

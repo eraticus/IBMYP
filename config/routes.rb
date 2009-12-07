@@ -57,7 +57,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # all the teacher routes
   # change edit_objectives to restful under objectives
-  map.resources :unit_planners, :member=>{:edit_know_understand_perform=>:get, :edit_diagnostic_assessment=>:get,:edit_prior_knowledge=>:get, :update_indications=>:put, :update_learning_styles=>:put, :update_learner_profiles=>:put, :edit_identification=>:get, :edit_visioning=>:get, :edit_objectives=>:get, :update_objectives=>:put, :edit_tasks=>:get, :update_tasks=>:put} do |unit_planner|
+  map.resources :unit_planners, :member=>{:edit_teaching_strategies=>:get, :edit_international_awareness=>:get, :edit_know_understand_perform=>:get, :edit_diagnostic_assessment=>:get,:edit_prior_knowledge=>:get, :update_indications=>:put, :update_learning_styles=>:put, :update_learner_profiles=>:put, :edit_identification=>:get, :edit_visioning=>:get, :edit_objectives=>:get, :update_objectives=>:put, :edit_tasks=>:get, :update_tasks=>:put} do |unit_planner|
     unit_planner.resources :summative_tasks
     unit_planner.resources :formative_tasks
     unit_planner.resources :learning_styles
