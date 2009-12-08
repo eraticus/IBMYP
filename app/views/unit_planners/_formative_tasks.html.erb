@@ -1,0 +1,16 @@
+<%# used by unit_planner#show %>
+
+<div class="section" id='formative_tasks'>
+	<div style="color: #f00;margin-bottom: 0;padding: 5px;">	
+		<%= "#{pluralize(@objectives_sans_formative_tasks.size, "Objectives")} #{@objectives_sans_formative_tasks.join(", ")} do not have Formative Tasks" unless @objectives_sans_formative_tasks.blank?%>
+	</div>
+
+	<!-- change architecture to-->
+	<!-- render :partial=>'formative_tasks' # plural!! -->
+	<table width="100%">
+		<tr class="tint"><td colspan="4"><label>Formative Task(s)</label></td><td><label>MYP Objectives</label></td><td><label>Blooms Level</label></td><td><label>Type of Task</label></td></tr>
+		<%=render :partial=>'formative_task', :collection=>@unit_planner.formative_tasks %>
+	</table>
+	<div class="navigation"><%=link_to 'New Formative Task', new_unit_planner_formative_task_path(@unit_planner)%></div>
+
+</div>

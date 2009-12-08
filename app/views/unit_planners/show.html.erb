@@ -48,8 +48,6 @@
 
 </div>
 
-<div class="section_1">
-	<div class="title">Summative and Formative Tasks</div>
 
 
 <!-- summative tasks -->
@@ -63,53 +61,15 @@
 		<%=render :partial=>'summative_task', :collection=>@unit_planner.summative_tasks %>
 	</table>
 	<div class="navigation"><%=link_to 'New Summative Task', new_unit_planner_summative_task_path(@unit_planner)%></div>
+	
 </div>
 
-<div class="section" id='formative_tasks'>
-	<div style="color: #f00;margin-bottom: 0;padding: 5px;">	
-		<%= "#{pluralize(@objectives_sans_formative_tasks.size, "Objectives")} #{@objectives_sans_formative_tasks.join(", ")} do not have Formative Tasks" unless @objectives_sans_formative_tasks.blank?%>
-	</div>
-
-	<!-- change architecture to-->
-	<!-- render :partial=>'formative_tasks' # plural!! -->
-	<table width="100%">
-		<tr class="tint"><td colspan="4"><label>Formative Task(s)</label></td><td><label>MYP Objectives</label></td><td><label>Blooms Level</label></td><td><label>Type of Task</label></td></tr>
-		<%=render :partial=>'formative_task', :collection=>@unit_planner.formative_tasks %>
-	</table>
-	<div class="navigation"><%=link_to 'New Formative Task', new_unit_planner_formative_task_path(@unit_planner)%></div>
-
-</div>
-
-</div>
-
-<div id="indicators" class="section">
-	<div class="title">Standards</div>
-	<div style="min-height:36px">
-
-		<%#= render :partial => 'indications/index', :object=>@unit_planner%>
-		<%#inline for now. Make a partial afterwards%>
-
-		<%for standard in @unit_planner.subject.standards%>
-		<% if @unit_planner.indications.all.find{|x| x.indicator.standard==standard}%>
-		<div style="font-weight:bold" >
-			<%="#{standard.label}. #{standard.name}"%>
-		</div>
-		<%end%>
-		<%for indication in @unit_planner.indications.all(:include=>:indicator, :order=>"indicators.label").find_all{|y| y.indicator.standard==standard}%>
-		<div style="margin-left:15px">
-
-		<%="#{indication.indicator.standard.label}.#{indication.indicator.label}"%></span> <span><%="#{indication.indicator.description}"%>
-		</div>
-
-		<%end%>
-		<%end%>
-
-		<div class="navigation">
-			<%= link_to "Select Standards", edit_unit_planner_indication_path(@unit_planner)%>
-		</div>
-
-	</div>
-
+<div id="summative_exemplars" class="section">	
+	<div class="title">How will students know what is expected of them on the summative task(s)?</div>
+	<%=@unit_planner.summative_exemplars%>
+	
+	
+	<div class="navigation"><%=link_to 'Edit Summative Exemplars', edit_summative_exemplars_unit_planner_path(@unit_planner)%></div>
 </div>
 
 <div class="section" id="backward_planner">
@@ -137,7 +97,7 @@
 			</div>
 		</div>
 
-	</div>
+	</div>	
 
 	<div class="section">
 
@@ -157,6 +117,7 @@
 
 		</div>
 
+		<%= render :partial => 'indicators' %>
 
 		<div class="section" id="international_awareness">
 			<div class="title">Intercultural Awareness -- International Mindedness</div>
@@ -244,7 +205,6 @@
 				<div class="navigation">
 					<%= link_to "Select Approaches", edit_unit_planner_approach_path(@unit_planner) %></div>
 				</div>
-			</div>
 
 			<div class="section">
 				<div class="title">Learning Activities</div>
@@ -253,6 +213,8 @@
 					<%=h @unit_planner.learning_activities %>
 				</div>
 			</div>
+			
+			<%= render :partial => 'formative_tasks' %>
 
 			<div class="section">
 				<div class="title">Resources</div>
@@ -266,4 +228,3 @@
 
 
 		</div>
-		<%= link_to 'Back', unit_planners_path %>

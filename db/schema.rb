@@ -196,6 +196,7 @@ ActiveRecord::Schema.define(:version => 20091207233417) do
     t.text     "prior_knowledge"
     t.text     "diagnostic_assessments"
     t.text     "learning_extension"
+    t.text     "summative_exemplars"
   end
 
   create_table "user_sessions", :force => true do |t|

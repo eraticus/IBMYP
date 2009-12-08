@@ -1,0 +1,17 @@
+<h1>Editing Summative Exemplars</h1>
+
+<% form_for(@unit_planner) do |f| %>
+  <%= f.error_messages %>
+
+<%=hidden_field_tag :anchor, "summative_exemplars"%>
+
+  <p>
+    <%= f.label :summative_exemplars %><br />
+    <%= f.text_area :summative_exemplars %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Cancel', unit_planner_path(@unit_planner, :anchor=>"summative_exemplars") %>

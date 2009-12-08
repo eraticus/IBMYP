@@ -1,0 +1,29 @@
+<div id="indicators" class="section">
+	<div class="title">Standards</div>
+	<div style="min-height:36px">
+
+		<%#= render :partial => 'indications/index', :object=>@unit_planner%>
+		<%#inline for now. Make a partial afterwards%>
+
+		<%for standard in @unit_planner.subject.standards%>
+		<% if @unit_planner.indications.all.find{|x| x.indicator.standard==standard}%>
+		<div style="font-weight:bold" >
+			<%="#{standard.label}. #{standard.name}"%>
+		</div>
+		<%end%>
+		<%for indication in @unit_planner.indications.all(:include=>:indicator, :order=>"indicators.label").find_all{|y| y.indicator.standard==standard}%>
+		<div style="margin-left:15px">
+
+		<%="#{indication.indicator.standard.label}.#{indication.indicator.label}"%></span> <span><%="#{indication.indicator.description}"%>
+		</div>
+
+		<%end%>
+		<%end%>
+
+		<div class="navigation">
+			<%= link_to "Select Standards", edit_unit_planner_indication_path(@unit_planner)%>
+		</div>
+
+	</div>
+
+</div>
