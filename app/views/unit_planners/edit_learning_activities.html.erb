@@ -1,0 +1,17 @@
+<h1>Editing Learning Activities</h1>
+
+<% form_for(@unit_planner) do |f| %>
+  <%= f.error_messages %>
+
+<%=hidden_field_tag :anchor, "learning_activities"%>
+
+  <p>
+    <%= f.label :learning_activities %><br />
+    <%= f.text_area :learning_activities %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Cancel', unit_planner_path(@unit_planner, :anchor=>"learning_activities") %>

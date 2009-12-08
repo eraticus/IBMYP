@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091207233417) do
+ActiveRecord::Schema.define(:version => 20091208015228) do
 
   create_table "approaches", :force => true do |t|
     t.string   "name"
@@ -179,11 +179,10 @@ ActiveRecord::Schema.define(:version => 20091207233417) do
     t.integer  "user_id"
     t.string   "intercultural_awareness"
     t.string   "learning_support"
-    t.string   "teaching_strategies"
     t.string   "approaches_skill"
     t.string   "approaches_strategy"
-    t.string   "learning_activities"
-    t.string   "resources"
+    t.text     "learning_activities"
+    t.text     "resources"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "grade"

@@ -209,8 +209,10 @@
 			<div class="section">
 				<div class="title">Learning Activities</div>
 
-				<div style="height:36px">
-					<%=h @unit_planner.learning_activities %>
+				<div>
+<pre><%=h @unit_planner.learning_activities %></pre>
+					<div class="navigation">
+						<%= link_to "Edit Learning Activites", edit_learning_activities_unit_planner_path(@unit_planner) %></div>
 				</div>
 			</div>
 			
@@ -219,8 +221,10 @@
 			<div class="section">
 				<div class="title">Resources</div>
 
-				<div style="height:36px">
-					<%=h @unit_planner.resources %>
+				<div>
+<pre><%=h @unit_planner.resources %></pre>
+					<div class="navigation">
+						<%= link_to "Edit Resources", edit_resources_unit_planner_path(@unit_planner) %></div>
 				</div>
 
 			</div>
