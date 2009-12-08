@@ -11,7 +11,11 @@
 	<div>
 		<%=check_box_tag "unit_planner[strategy_ids][]", strategy.id, @unit_planner.strategies.include?(strategy) %>
 		<span style="font-style:italic"><%=h strategy.description%></span>
+		
+		<%= text_field_tag "unit_planner[strategy_descriptions][#{strategy.id}]", ((@unit_planner.approaches.find_by_strategy_id(strategy.id).description) if @unit_planner.approaches.find_by_strategy_id(strategy.id)) %>
+		
 	</div>
+	
 	<% end %>
 </div>
 <% end %>

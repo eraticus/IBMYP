@@ -2,6 +2,7 @@ class UnitPlanner < ActiveRecord::Base
   
   attr_accessor :learner_profile_descriptions
   attr_accessor :learning_style_descriptions
+  attr_accessor :strategy_descriptions
   
   belongs_to :user # author of document
   belongs_to :subject
@@ -38,7 +39,8 @@ class UnitPlanner < ActiveRecord::Base
   # begin lifecycle methods
   
   before_save :set_learner_profile_descriptions
- before_save :set_learning_style_descriptions
+  before_save :set_learning_style_descriptions
+  before_save :set_strategy_descriptions
   
   after_save {|y| y.objectives.clear if y.subject_id_changed?}
   after_save {|y| y.indications.clear if y.subject_id_changed?}
@@ -71,17 +73,52 @@ class UnitPlanner < ActiveRecord::Base
   
   def set_learning_style_descriptions  
     return unless learning_style_descriptions
-    
+
     learning_styles.each do |style|
       style.update_attribute(:description, nil)
     end
-          
+
     for x in learning_style_descriptions.keys
       if intelligence_ids.include? x.to_i
         learning_style = learning_styles.find_by_intelligence_id(x.to_i)
         learning_style.update_attribute(:description, learning_style_descriptions[x])
       end
-    end  end
+    end  
+  end
+  
+  # add strategy descriptions to approaches
+  def set_strategy_descriptions
+    # if there is no strategy_descriptions array
+    # then do not do the after_save processing.
+    # Otherwise the next line will delete all descriptions.
+    return unless strategy_descriptions
+
+    # TODO: investigate: can this be reduced to one db call?
+    approaches.each do |approach|
+      approach.update_attribute(:description, nil)
+    end
+
+    # find ids of strategies we are interested in
+    # that is(!), collect the keys, if the value is not empty
+    strategy_ids = strategy_descriptions.find_all{|x| !x[1].empty?}.collect{|y| y[0]}
+    # find all strategies that have descriptions
+    a = approaches.find_all_by_strategy_id strategy_ids
+
+    # now fill in the approaches with the descriptions from the strategy_descriptions
+    a.each do |approach|
+      approach.update_attribute(:description, strategy_descriptions[approach.strategy_id.to_s])
+    end
+
+  end
+
+  
+  # def strategy_descriptions=(descriptions)
+  #   for number in descriptions.keys
+  #     if not descriptions[number].blank?
+  #       puts descriptions[number]
+  #     end
+  #   end
+  # end
   
 
   # poor substitute for has and belongs to many criterions

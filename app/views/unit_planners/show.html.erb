@@ -195,7 +195,7 @@
 					<span style='font-weight:bold'><%=h "#{skill.label}. #{skill.name}"%></span>
 					<% Strategy.find_all_by_skill_id(skill.id, :order=>:label, :include=>:approaches, :conditions=>["approaches.unit_planner_id=?", @unit_planner.id]).each do |strategy| %>
 					<div style='margin:0px 15px'>
-						<%= h "#{strategy.label}. #{strategy.description}" if (@unit_planner.strategies.include? strategy) %>
+						<%= h "#{strategy.label}. #{strategy.description}: #{strategy.approaches.first.description}" if (@unit_planner.strategies.include? strategy) %>
 					</div>
 					<%end%>
 				</div>
